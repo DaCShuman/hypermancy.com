@@ -7,28 +7,31 @@
   <style>
     body {
       margin: 0;
-      background-color: #0d0d0d; /* sampled from image background */
+      background-color: #0d0d0d; /* sampled from image */
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: start;
       min-height: 100vh;
       font-family: Arial, sans-serif;
       color: white;
+      overflow-x: hidden;
     }
 
     .logo {
       margin-top: 60px;
-      max-width: 90%;
+      max-width: 800px;
+      width: 90%;
       height: auto;
+      z-index: 1;
     }
 
     .tagline {
-      margin-top: 20px;
+      margin-top: 40px;
       font-size: 1.2rem;
       font-style: italic;
       color: #cccccc;
       text-align: center;
+      z-index: 2;
     }
   </style>
 </head>
