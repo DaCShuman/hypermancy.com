@@ -6,8 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact</title>
   <style>
+    :root { --accent-green: #00ff99; }
+
     body {
-      background-color: #050505;
+      background-color: #020402;
       color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
@@ -17,13 +19,102 @@
       margin: 0;
       text-align: center;
     }
+
+    a.email {
+      color: var(--accent-green);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    a.email:hover {
+      text-decoration-thickness: 3px;
+      filter: drop-shadow(0 0 6px var(--accent-green));
+    }
+
+    /* text utilities */
+    .text-accent { color: var(--accent-green); }
+    .text-purple { color: #b58cff; }
+    .text-red { color: #e00303; }
+    .text-green { color: #00ff99; }
+    .text-orange{ color: #ff8800; }
+    .text-muted  { color: rgba(255,255,255,.7); }
+    .text-warning{ color: #ffb84d; }
+    .text-danger { color: #ff6b6b; }
+    .text-glow   { text-shadow: 0 0 6px currentColor; }
+
+    /* 1) Host OpenDyslexic yourself in /fonts */
+@font-face{
+  font-family:'OpenDyslexic';
+  src:url('/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+      url('/fonts/OpenDyslexic-Regular.woff') format('woff');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* 2) When the toggle is ON: allow class on <html> or <body> */
+.dyslexic-on body,
+body.dyslexic-on{
+  font-family:'OpenDyslexic', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  line-height:1.65;        /* a touch more line height helps legibility */
+  letter-spacing:0.02em;   /* optional: tiny tracking */
+}
+
+/* Optional: make the toggle look pressed when active */
+#dyslexicToggle[aria-pressed="true"]{
+  background-color: var(--accent-green);
+  color:#000;
+  border-color: var(--accent-green);
+}
   </style>
 </head>
 <body>
   <div>
     <h1>Contact Us</h1>
-    <p>We'll soon provide ways to reach out to the Hypermancy team. Stay tuned!</p>
+
+    <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
+  Dyslexic font
+</button>
+
+    <p>
+      Please email
+      <a
+        class="email"
+        href="mailto:studio@hypermancy.com?subject=Hypermancy%20Inquiry&body=Hi%20Hypermancy%20Studios,%0A%0A"
+        aria-label="Email studio at hypermancy dot com"
+      >studio@hypermancy.com</a>
+      with any inquiries or suggestions. Thank you.
+    </p>
   </div>
+
+  <script>
+  // Apply saved preference ASAP (prevents a flash)
+  (function () {
+    try {
+      if (localStorage.getItem('dyslexic') === '1') {
+        document.documentElement.classList.add('dyslexic-on');
+      }
+    } catch (e) {}
+  })();
+
+  // Wire up the toggle
+  window.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('dyslexicToggle');
+    if (!btn) return;
+
+    const setState = (on) => {
+      document.documentElement.classList.toggle('dyslexic-on', on);
+      document.body.classList.toggle('dyslexic-on', on); // works either way
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      try { localStorage.setItem('dyslexic', on ? '1' : '0'); } catch (e) {}
+    };
+
+    // initialize button state from the early-applied class
+    setState(document.documentElement.classList.contains('dyslexic-on'));
+
+    btn.addEventListener('click', () => {
+      const on = !document.documentElement.classList.contains('dyslexic-on');
+      setState(on);
+    });
+  });
+</script>
+
 </body>
 </html>
-
