@@ -163,3 +163,13 @@ body.dyslexic-on{
 
 /* (Optional) keep the nav’s own margin tight */
 .button-bar { margin-bottom: 0.5rem; }
+
+
+/* Logo sizing (match PoP) */
+.logo {
+  max-width: 600px;
+  width: 90%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5em;
+}
