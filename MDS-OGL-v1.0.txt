@@ -1,0 +1,86 @@
+Magnitude Dice System Open Gaming License (MDS-OGL) v1.0
+Copyright © 2025 Hypermancy Studios Limited. All rights reserved.
+
+This License grants a perpetual, worldwide, royalty-free, non-exclusive right to use, copy, modify, and distribute Open Game Content as defined below, subject to the terms herein.
+
+0. Definitions
+0.1 “Open Game Content” (OGC) means the game mechanics and rules elements of the Magnitude Dice System (MDS)—including procedures, dice mechanics, numerical values, probability tables, and other functional methods—originally distributed by Licensor or by contributors under this License, and any modifications or derivatives thereof, excluding Product Identity.
+0.2 “Product Identity” (PI) means trademarks, service marks, logos, trade dress; proper names; storylines, plots, settings, characters, artwork, graphics, icons, maps, logos, fonts; distinctive presentation; and any text not explicitly designated as OGC.
+0.3 “Work” means a work of authorship (text, digital or physical) that You create, adapt, or distribute under this License.
+0.4 “You” means the licensee using rights granted by this License.
+0.5 “Licensor” means Hypermancy Studios Limited (or other rightsholder that publishes MDS content under this License).
+
+1. Grant of License
+Subject to Section 5 (Decency & Respect) and all other terms, Licensor grants You a license to:
+(a) use, copy, translate, modify, and distribute OGC, including within commercial products; and
+(b) include Your own original contributions as OGC or as PI, at Your choice,
+provided You comply with the identification and notice requirements in Sections 2 and 3.
+
+2. Designation of Content
+2.1 Licensor’s Designation. In each official MDS release, Licensor will identify which portions are OGC and which are PI. Unless expressly designated OGC, content is PI.
+2.2 Your Designation. In each Work, You must clearly mark what You are designating as OGC and what You are reserving as PI.
+
+3. Conditions of Use (Attribution & Notices)
+When You distribute a Work that contains any OGC:
+3.1 Attribution. Credit the source of any OGC You use (including MDS and any third-party OGC) in a “Credits & License” section.
+3.2 License Notice. Include a copy of this License text (or a stable URL to it) with Your Work.
+3.3 Section 15-Style List. Provide a consolidated list of copyright notices for all OGC included (see the template in Section 14).
+3.4 Open Access to OGC. Any of Your content designated as OGC is licensed to the public under this same License.
+3.5 No Endorsement. State that Your Work is not affiliated with or endorsed by Licensor unless You have written permission.
+3.6 Compatibility Statement (Optional). You may state “Compatible with the Magnitude Dice System” or “For use with MDS” provided it is truthful and not presented as sponsorship or endorsement.
+
+4. Restrictions
+You may not:
+4.1 Misuse of PI. Use Licensor’s PI (including “Hypermancy,” “Hypermancy Studios,” MDS logos, or distinctive trade dress) except as allowed by fair use or with written permission.
+4.2 Technological Restrictions. Distribute OGC in a manner that prevents recipients from exercising rights granted by this License (e.g., DRM that blocks lawful copying of OGC).
+4.3 License Switching. Re-license OGC under a different license; OGC must remain available under this License (You may dual-license Your original material, but not third-party OGC You did not create).
+
+5. Decency & Respect (Required Standard of Conduct)
+5.1 Purpose. MDS encourages expansive storytelling while rejecting works that are primarily exploitative or demeaning.
+5.2 Prohibited Exploitation. This License does not permit Works whose primary purpose or principal appeal is the exploitation or demeaning treatment of people or groups, including content that:
+    • intentionally promotes hatred or dehumanization on the basis of race, ethnicity, national origin, caste, religion, sex, gender, sexual orientation, disability, or similar protected characteristics;
+    • sexualizes or glamorizes non-consensual acts, sexual violence, or sexual content involving minors; or
+    • revels in real-world violence or suffering as entertainment aimed at demeaning a protected group.
+5.3 Context vs. Focus. Works may include bigoted, demeaning, sexual, racial, or violent elements as part of a broader narrative that critically examines or responsibly portrays such themes. The restriction applies where a reasonable person would conclude the dominant purpose of the Work is exploitation or demeaning treatment as described above.
+5.4 Enforcement. If Licensor reasonably determines a Work violates this Section, Licensor may provide written notice. If You do not cure within 30 days (e.g., by withdrawing distribution, revising the Work, or removing branding claims of MDS compatibility), Your rights under this License terminate automatically (see Section 8). This Section does not limit any applicable law or platform policies.
+
+6. Updates to the License
+Licensor may publish updated versions of this License. You may continue to use any authorized version of this License that applies to the OGC You are using.
+
+7. Trademarks & Branding
+Nothing in this License grants rights in Licensor’s or third parties’ trademarks, service marks, or logos. Any permitted reference to “Magnitude Dice System” must comply with Section 3.6 and applicable trademark law.
+
+8. Termination
+This License terminates automatically if You materially breach it and fail to cure within 30 days of notice (immediate termination for egregious violations, including 5.2). Upon termination, You must cease distribution of Works that include OGC from Licensor. Prior recipients of Your Works may continue to use OGC they already received under this License.
+
+9. No Warranty
+OGC is provided “AS IS,” without warranties of any kind, express or implied, including fitness for a particular purpose and non-infringement.
+
+10. Limitation of Liability
+To the maximum extent allowed by law, neither Licensor nor any contributor will be liable for indirect, incidental, special, exemplary, or consequential damages arising from this License or use of OGC.
+
+11. Indemnity
+You will indemnify and hold harmless Licensor and contributors from claims arising out of Your Works, except to the extent caused by Licensor’s own materials as supplied to You.
+
+12. Severability & No Waiver
+If any provision is unenforceable, the remainder remains in effect. Failure to enforce is not a waiver.
+
+13. Governing Law
+This License will be governed by the laws of the jurisdiction where Licensor is organized, without regard to conflict-of-law rules, unless otherwise required by local law for consumers.
+
+14. Credits & License (Section 15-Style Template)
+Include the following in Works that use OGC:
+
+CREDITS & LICENSE
+
+This product includes Open Game Content from the Magnitude Dice System (MDS).
+
+Open Game Content: Except for Product Identity (see below), the game mechanics, rules text, and numerical methods in this work are designated as Open Game Content under the MDS-OGL v1.0.
+
+Product Identity: The following are Product Identity and are not Open Game Content: [list your trademarks, logos, distinctive layout, artwork, setting lore, character names, etc.]
+
+Attribution:
+• Magnitude Dice System (MDS) Core: © 2025 Hypermancy Studios Limited. Used under the MDS-OGL v1.0.
+• Additional OGC sources (if any): [Title], © [Year] [Owner], used under [license].
+
+License Text: The Magnitude Dice System Open Gaming License (MDS-OGL) v1.0 is included with this product or available at: https://hypermancy.com/licenses/MDS-OGL-v1.0
