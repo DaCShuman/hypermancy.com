@@ -1,0 +1,195 @@
+/* ===== Paths of Power (PoP) styles ===== */
+
+:root{
+  --accent-green:  #00ff99;
+  --accent-purple: #b58cff;
+  --text-primary:  #ffffff;
+  --bg:            #020402;
+}
+
+/* Base layout */
+* { box-sizing: border-box; }
+
+body{
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2em;
+  max-width: 960px;
+}
+
+main { width: 100%; max-width: 100%; }
+header { margin-bottom: 1.25em; }
+
+h1 { font-size: 2.5rem; margin-bottom: 0.5em; }
+h2 { font-size: 1.8rem; margin-top: 1.5em; }
+p  { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; }
+
+a.back-link { margin-top: 2em; font-size: .9rem; color: #ccc; text-decoration: underline; }
+footer { margin-top: auto; font-size: .8rem; opacity: .4; padding-top: 2em; }
+
+@media (max-width: 768px){
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.4rem; }
+  p  { font-size: 1rem; }
+}
+
+/* Text utilities */
+.text-accent { color: var(--accent-green); }
+.text-purple { color: var(--accent-purple); }
+.text-red    { color: #e00303; }
+.text-green  { color: #00ff99; }
+.text-orange { color: #ff8800; }
+.text-muted  { color: rgba(255,255,255,.7); }
+.text-warning{ color: #ffb84d; }
+.text-danger { color: #ff6b6b; }
+.text-glow   { text-shadow: 0 0 6px currentColor; }
+
+/* Optional realm link style */
+.realm-link{
+  color: #ffd700;
+  text-decoration: underline;
+  text-decoration-thickness:2px;
+  text-underline-offset:3px;
+  font-weight:bold;
+}
+.realm-link:hover{ color:#ff8800; }
+
+/* Button bar */
+nav.button-bar{
+  display:flex; flex-wrap:wrap; justify-content:center;
+  gap:1em; margin-bottom:.75em;
+}
+nav.button-bar a{
+  background-color:#222; color:#fff; border:1px solid #555; border-radius:6px;
+  padding:.5em 1em; font-size:1rem; text-decoration:none;
+  transition: background-color .3s, border-color .3s, color .2s, text-shadow .2s;
+}
+nav.button-bar a:hover{ background-color: rgba(196, 88, 1, 0.80); border-color:#888; }
+
+/* Hover-only purple + glow for links that opt in */
+.hover-purple-glow { color: inherit; text-shadow: none; transition: color .2s ease, text-shadow .2s ease; }
+a.hover-purple-glow:hover,
+a.hover-purple-glow:focus-visible { color: var(--accent-purple); text-shadow: 0 0 6px var(--accent-purple); }
+
+/* Expanding description panel under the button bar */
+.bar-explain {
+  position: relative; margin: 0 auto 1.5rem; max-width: 900px;
+  color: var(--text-primary);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: 0 1.1rem;
+  overflow: clip; backdrop-filter: blur(10px);
+  max-height: 0; opacity: 0; transform: translateY(-6px) scaleY(.98);
+  transform-origin: top;
+  transition: max-height .35s ease, opacity .25s ease, transform .35s ease, padding .25s ease;
+}
+.bar-explain.show {
+  max-height: 220px; opacity: 1; transform: translateY(0) scaleY(1);
+  padding: .85rem 1.1rem 1rem;
+}
+.bar-explain p { margin: 0; font-size: 1rem; line-height: 1.55; text-align: center; }
+
+.scribble-frame { position:absolute; inset:-8px; width:calc(100% + 16px); height:calc(100% + 16px); pointer-events:none; opacity:.55; }
+.scribble-frame path { fill:none; stroke: rgba(181,140,255,.55); stroke-width:2; stroke-linecap:round; stroke-linejoin:round; filter: drop-shadow(0 0 6px rgba(181,140,255,.25)); }
+
+/* Dyslexic toggle — matches nav buttons */
+.nav-btn{
+  background-color:#222; color:#fff; border:1px solid #555; border-radius:6px;
+  padding:.5em 1em; font-size:1rem; cursor:pointer;
+  transition: background-color .3s, border-color .3s, color .3s;
+  margin-bottom: 1rem;
+}
+.nav-btn:hover{ background-color: rgba(196,88,1,.766); border-color:#888; }
+.nav-btn:focus-visible{ outline: 2px solid var(--accent-green); outline-offset: 2px; }
+
+/* Webfont */
+@font-face{
+  font-family:'OpenDyslexic';
+  src:url('/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+      url('/fonts/OpenDyslexic-Regular.woff') format('woff');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* Dyslexic mode (applied via JS) */
+.dyslexic-on body,
+body.dyslexic-on{
+  font-family:'OpenDyslexic', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  line-height:1.65;
+  letter-spacing:0.02em;
+}
+
+/* Pressed state */
+#dyslexicToggle[aria-pressed="true"]{
+  background-color: var(--accent-green);
+  border-color: var(--accent-green);
+  color:#000;
+}
+
+/* Logo fade-in */
+.logo { max-width: 600px; width: 90%; height: auto; margin-bottom: 1.5em; opacity: 0; animation: fadeIn 2.5s ease-in-out forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* Optional PoP-hero heading tone */
+.pop-hero h1 { color: var(--accent-purple); text-shadow: 0 0 8px rgba(181,140,255,.25); }
+
+
+/* ===== Tables ===== */
+.table-wrap {
+  margin: 0 auto;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  max-width: 960px;
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.table caption {
+  caption-side: bottom;
+  padding-top: .5rem;
+  color: rgba(255,255,255,.7);
+  font-size: .9rem;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: .5rem .6rem;
+}
+
+.table thead th {
+  border-bottom: 1px solid rgba(255,255,255,.22);
+  font-weight: 700;
+}
+
+.table tbody td {
+  border-bottom: 1px solid rgba(255,255,255,.14);
+}
+
+/* Modifiers */
+.table--compact th,
+.table--compact td {
+  padding: .35rem .5rem;
+}
+
+.table--zebra tbody tr:nth-child(odd) {
+  background: rgba(255,255,255,.03);
+}
+
+@media (max-width: 480px) {
+  .table { font-size: .95rem; }
+}
