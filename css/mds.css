@@ -1,0 +1,165 @@
+/* =========================
+   MDS – Global Site Styles
+   ========================= */
+
+/* Accent */
+:root { --accent-green: #00ff99; }
+
+/* Base layout */
+body{
+  margin:0 auto;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:#020402; color:#ffffff;
+  display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+  min-height:100vh; text-align:center; padding:2em; max-width:960px;
+}
+main{ width:100%; max-width:100%; }
+header{ margin-bottom:2em; }
+h1{ font-size:2.5rem; margin-bottom:.5em; }
+h2{ font-size:1.8rem; margin-top:1.5em; }
+p{ font-size:1.1rem; line-height:1.6; opacity:.9; }
+
+a.back-link{ margin-top:2em; font-size:.9rem; color:#ccc; text-decoration:underline; }
+footer{ margin-top:auto; font-size:.8rem; opacity:.4; padding-top:2em; }
+
+@media (max-width:768px){
+  h1{ font-size:1.8rem; }
+  h2{ font-size:1.4rem; }
+  p { font-size:1rem; }
+}
+
+/* Text utilities */
+.text-accent { color: var(--accent-green); }
+.text-purple { color: #b58cff; }
+.text-red    { color: #e00303; }
+.text-green  { color: #00ff99; }
+.text-orange { color: #ff8800; }
+.text-muted  { color: rgba(255,255,255,.7); }
+.text-warning{ color: #ffb84d; }
+.text-danger { color: #ff6b6b; }
+.text-glow   { text-shadow: 0 0 6px currentColor; }
+
+/* Top nav button bar */
+nav.button-bar{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:1em; margin-bottom:2em;
+}
+nav.button-bar a{
+  background-color:#222; color:#fff; border:1px solid #555; border-radius:6px;
+  padding:.5em 1em; font-size:1rem; text-decoration:none;
+  transition: background-color .3s, border-color .3s;
+}
+nav.button-bar a:hover{
+  background-color: rgba(196,88,1,.766); border-color:#888;
+}
+
+/* Dyslexic toggle button (matches nav links) */
+.nav-btn{
+  background-color:#222; color:#fff; border:1px solid #555; border-radius:6px;
+  padding:.5em 1em; font-size:1rem; cursor:pointer;
+  transition: background-color .3s, border-color .3s, color .3s;
+  margin-bottom:1rem;
+}
+.nav-btn:hover{ background-color: rgba(196,88,1,.766); border-color:#888; }
+.nav-btn:focus-visible{ outline:2px solid var(--accent-green); outline-offset:2px; }
+
+/* Webfont (expects files at /fonts/...) */
+@font-face{
+  font-family:'OpenDyslexic';
+  src:url('/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+      url('/fonts/OpenDyslexic-Regular.woff')  format('woff');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* Dyslexic mode */
+.dyslexic-on body,
+body.dyslexic-on{
+  font-family:'OpenDyslexic', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  line-height:1.65; letter-spacing:0.02em;
+}
+
+/* Toggle pressed state (with fallback) */
+#dyslexicToggle[aria-pressed="true"]{
+  background-color: var(--accent-green, #00ff99);
+  border-color: var(--accent-green, #00ff99);
+  color:#000;
+}
+
+/* (Optional) Talent definition list used on talents.html */
+.talent-dl{
+  display:grid; grid-template-columns:max-content 1fr;
+  column-gap:.5rem; row-gap:.4rem; text-align:left;
+  margin:0 auto 2rem; max-width:120ch;
+}
+.talent-dl dt{ font-weight:700; margin:0; }
+.talent-dl dt::after{ content:":"; }
+.talent-dl dd{ margin:0; }
+
+/* CharacterCreation: Quick Start left-aligned */
+.quick-start {
+  text-align: left;
+  margin: 0 auto 1rem;
+  max-width: 70ch;            /* optional: nice readable line length */
+}
+
+.quick-start ol {
+  padding-left: 1.25rem;      /* indent markers */
+  margin: 0.25rem 0 0;
+}
+
+.quick-start li {
+  margin: 0.35rem 0;
+}
+
+/* CharacterCreation: Quick Start left-aligned */
+.quick-start {
+  text-align: left;
+  margin: 0 auto 1rem;
+  max-width: 70ch;            /* optional: nice readable line length */
+}
+
+.quick-start ol {
+  padding-left: 1.25rem;      /* indent markers */
+  margin: 0.25rem 0 0;
+}
+
+.quick-start li {
+  margin: 0.35rem 0;
+}
+
+
+/* Collapse the explain bar by default */
+.bar-explain {
+  display: none;           /* keep it out of layout when not in use */
+  max-height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* When JS wants it visible, flip aria-hidden to false */
+.bar-explain[aria-hidden="false"] {
+  display: block;
+  max-height: 10rem;       /* adjust to taste */
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  position: relative;
+}
+
+/* Make the SVG decorative so it doesn't set height */
+.bar-explain .scribble-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keep text above the SVG */
+.bar-explain .explain-text {
+  position: relative;
+  z-index: 1;
+}
+
+/* (Optional) keep the nav’s own margin tight */
+.button-bar { margin-bottom: 0.5rem; }
