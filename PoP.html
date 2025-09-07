@@ -4,103 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Paths of Power – Hypermancy Studios</title>
-  <style>
-    body {
-      margin: 0 auto;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #050505;
-      color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      text-align: center;
-      padding: 2em;
-      max-width: 960px;
-    }
 
-    main {
-      width: 100%;
-      max-width: 100%;
-    }
-
-    .logo {
-      max-width: 600px;
-      width: 90%;
-      height: auto;
-      margin-bottom: 1.5em;
-      opacity: 0;
-      animation: fadeIn 2.5s ease-in-out forwards;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    header {
-      margin-bottom: 2em;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5em;
-    }
-
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      opacity: 0.9;
-    }
-
-    a.back-link {
-      margin-top: 2em;
-      font-size: 0.9rem;
-      color: #ccc;
-      text-decoration: underline;
-    }
-
-    footer {
-      margin-top: auto;
-      font-size: 0.8rem;
-      opacity: 0.4;
-      padding-top: 2em;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 1.8rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+  <!-- PoP-only bundle -->
+  <link rel="stylesheet" href="/css/pop.css" />
+  <script src="/js/pop.js" defer></script>
 </head>
 <body>
   <main>
     <img src="PathsOfPower1.jpg" alt="Paths of Power Logo" class="logo" />
 
+    <!-- Top menu bar (global) -->
     <header>
-      <h1>Begin as a feeble civilian and ascend to the power of a god—and beyond.</h1>
+      <nav class="button-bar" id="buttonBar" data-explain-target="barExplain">
+        <a href="index.html" class="hover-purple-glow nav-item"
+           data-desc="Return to the Hypermancy Studios homepage.">
+          Hypermancy Studios
+        </a>
+
+        <a href="MDS.html" class="hover-purple-glow nav-item"
+           data-desc="Explore the Magnitude Dice System, the core mechanic behind Paths of Power.">
+          The Magnitude Dice System
+        </a>
+
+        <a href="Realms.html" class="hover-purple-glow nav-item"
+           data-desc="Explore the rich cosmology and lore of the Realms, the multi-dimensional universe of PoP.">
+           The Realms
+        </a>
+
+        <a href="Species.html" class="hover-purple-glow nav-item"
+           data-desc="Explore the sapient creatures, entities, monsters and lineages across the Realms.">
+           Species of the Realms
+        </a>
+
+        <a href="Travel.html" class="hover-purple-glow nav-item"
+           data-desc="Discover the various methods of travel across the Realms, from mundane to magical.">
+           Traversal and Transportation
+        </a>
+      </nav>
+
+      <!-- Dyslexic toggle -->
+      <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
+        Dyslexic font
+      </button>
+
+      <!-- Expanding description panel -->
+      <div id="barExplain" class="bar-explain" aria-live="polite" aria-hidden="true">
+        <p class="explain-text"></p>
+        <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z" />
+        </svg>
+      </div>
     </header>
+
+    <h1>Begin as a feeble civilian and ascend to the power of a god—and beyond.</h1>
 
     <section>
       <p>
         PoP is the next generation of tabletop roleplaying games, allowing players to achieve infinite levels of power and mastery.<br>
-        The PoP framework fits seamlessly into most popular campaigns, providing a plug-and-play solution<br>
-        for both newcomers and experienced players.
+        The Paths of Power of Power universe features the Magnitude Dice System and a rich and robust universe,<nobr></nobr><br>
+        set in a sci-fi/fantasy setting.<br>
       </p>
     </section>
 
     <a href="index.html" class="back-link">&larr; Return to Home</a>
   </main>
 
-  <footer>
-    &copy; 2025 Hypermancy Studios Limited
-  </footer>
+  <footer>&copy; 2025 Hypermancy Studios Limited</footer>
 </body>
 </html>
