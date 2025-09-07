@@ -4,12 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hypermancy Studios</title>
+  <meta name="theme-color" content="#04131a" />
+  <link rel="preload" as="image" href="StudiosFinal.svg" />
+
+  <!-- Shared site CSS/JS -->
+  <link rel="stylesheet" href="/css/mds.css">
+  <script src="/js/mds.js" defer></script>
+
   <style>
+    :root {
+      --bg-primary: #00070d;
+      --bg-mid:     #04131a;
+      --bg-end:     #081e26;
+
+      --text-primary: #ffffff;
+      /* Landing page palette (overrides mds.css if different) */
+      --accent-green: #00ff64;
+      --accent-purple: #b58cff;
+
+      --glass-bg:     rgba(255, 255, 255, 0.035);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --projects-bg:  rgba(28, 10, 34, 0.6);
+
+      --smoke-a: #0a7fb3;
+      --smoke-b: #3aa4c7;
+      --smoke-c: #001e28;
+
+      --radius: 10px;
+      --spacing: 1.5em;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0 auto;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #050505;
-      color: #ffffff;
+      background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -18,190 +50,409 @@
       text-align: center;
       padding: 2em;
       max-width: 960px;
+      position: relative;
+      overflow-x: hidden;
+      isolation: isolate;
     }
 
-    main {
-      width: 100%;
-      max-width: 100%;
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(0, 140, 180, 0.10) 0%, transparent 40%),
+        radial-gradient(circle at 22% 78%, rgba(20, 0, 50, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 85% 25%, rgba(0, 0, 0, 0.90) 20%, transparent 40%);
+      pointer-events: none;
+      z-index: -1;
     }
+
+    /* Text utility extras (mds.css already has .text-accent/.text-purple/etc.) */
+    .text-muted    { color: rgba(255,255,255,.7); }
+    .text-warning  { color: #ffb84d; }
+    .text-danger   { color: #ff6b6b; }
+    .text-glow     { text-shadow: 0 0 6px currentColor; }
+
+    /* Hover-only purple + glow opt-in */
+    .hover-purple-glow {
+      color: inherit;
+      text-shadow: none;
+      transition: color .2s ease, text-shadow .2s ease;
+    }
+    a.hover-purple-glow:hover,
+    a.hover-purple-glow:focus-visible {
+      color: var(--accent-purple);
+      text-shadow: 0 0 6px var(--accent-purple);
+    }
+
+    main { width: 100%; max-width: 900px; z-index: 1; }
 
     .logo {
       max-width: 600px;
       width: 90%;
       height: auto;
-      margin-bottom: 1.5em;
+      margin-bottom: var(--spacing);
       opacity: 0;
-      animation: fadeIn 2.5s ease-in-out forwards;
+      filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.08));
+      animation: logoFade 1.6s ease forwards 120ms;
+      will-change: opacity, transform;
     }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+    @keyframes logoFade {
+      from { opacity: 0; transform: translateY(6px) scale(0.985); }
+      to   { opacity: 1; transform: none; }
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3rem);
       margin-bottom: 0.5em;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.22);
     }
 
-    p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;  
-      line-height: 1.5;
-      opacity: 0.8;
+    .content-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: var(--spacing);
+      margin: 1em auto;
+      backdrop-filter: blur(10px);
+      max-width: 100%;
     }
 
     .projects {
-      margin-top: 2em;
+      background: var(--projects-bg);
+      border-color: rgba(0, 255, 100, 0.18);
       font-size: 1rem;
-      opacity: 0.6;
+    }
+    .projects strong {
+      color: var(--accent-green);
+      text-shadow: 0 0 4px rgba(0, 255, 100, 0.35);
+    }
+
+    .notice {
+      font-size: 1.2rem;
+      line-height: 1.55;
     }
 
     footer {
       margin-top: auto;
       font-size: 0.8rem;
       opacity: 0.4;
+      padding-top: var(--spacing);
+      z-index: 1;
     }
 
-    .side-buttons {
+    /* Smoke canvas overlay — toned down */
+    .smoke-canvas {
       position: fixed;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 1em;
-      z-index: 1000;
-      background: transparent;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.28;
+      mix-blend-mode: soft-light;
+      filter: blur(12px) contrast(108%);
     }
 
-    .side-button {
-      width: 40px;
-      height: 40px;
-      background-color: transparent;
-      color: #fff;
-      overflow: hidden;
-      white-space: nowrap;
-      border-radius: 0 0 0 5px;
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+      .content-card{
+        backdrop-filter: none;
+        background: rgba(255,255,255,.08);
+        border-color: rgba(255,255,255,.16);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .smoke-canvas, .logo { animation: none; }
+      .smoke-canvas { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      body::before {
+        background: radial-gradient(circle at 50% 50%, rgba(0, 60, 80, 0.12) 0%, transparent 70%);
+      }
+      .smoke-canvas { display: none; }
+    }
+
+    /* Minor override to mds.css: tighter spacing under the header bar */
+    nav.button-bar { margin-bottom: 0.75rem; }
+
+    /* Expanding description panel under the button bar */
+    .bar-explain {
       position: relative;
-      transition: width 0.3s ease, transform 0.3s ease;
+      margin: 0 auto 1.5rem;
+      max-width: 900px;
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 0 1.1rem;        /* padding is applied once expanded */
+      overflow: clip;           /* keep frame edges clean */
+      backdrop-filter: blur(10px);
+
+      /* collapsed state */
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-6px) scaleY(.98);
+      transform-origin: top;
+      transition: max-height .35s ease, opacity .25s ease, transform .35s ease, padding .25s ease;
+    }
+    .bar-explain.show {
+      max-height: 220px;        /* ample for two lines of copy */
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+      padding: .85rem 1.1rem 1rem;
+    }
+    .bar-explain p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.55;
+      text-align: center;
     }
 
-    .side-buttons:hover .side-button {
-      width: 240px;
-      transform: translate(-20px, 0);
+    /* Hand-drawn frame */
+    .scribble-frame {
+      position: absolute;
+      inset: -8px;
+      width: calc(100% + 16px);
+      height: calc(100% + 16px);
+      pointer-events: none;
+      opacity: .55;
     }
-
-    .side-button a {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
-      height: 100%;
-      width: 100%;
-      padding: 0 20px 0 15px;
-      color: inherit;
-      text-decoration: none;
-      font-size: 0.9rem;
-      background-color: transparent;
-      transition: transform 0.2s ease;
-    }
-
-    .side-button a:hover .icon {
-      transform: scale(1.1);
-    }
-
-    .side-button .icon {
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
-
-      .projects {
-        font-size: 0.9rem;
-      }
-
-      .side-buttons {
-        top: auto;
-        bottom: 0;
-        right: 50%;
-        transform: translateX(50%);
-        flex-direction: row;
-        gap: 0.5em;
-        padding: 0.5em;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 10px 10px 0 0;
-      }
-
-      .side-button {
-        width: 40px;
-        height: 40px;
-        transform: none !important;
-        transition: none;
-      }
-
-      .side-buttons:hover .side-button {
-        width: 40px;
-      }
-
-      .side-button a {
-        justify-content: center;
-        padding: 0.25em;
-        font-size: 0;
-      }
-
-      .side-button .icon {
-        font-size: 1.5rem;
-      }
+    .scribble-frame path {
+      fill: none;
+      stroke: rgba(181,140,255,.55);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 6px rgba(181,140,255,.25));
     }
   </style>
 </head>
 <body>
+  <canvas id="smoke" class="smoke-canvas" aria-hidden="true"></canvas>
 
   <main>
-    <img src="HypermancyStudiosLogo.png" alt="Hypermancy Studios logo – stylized text with dark aesthetic" class="logo" />
+    <img src="StudiosFinal.svg" alt="Hypermancy Studios logo — stylized text with dark aesthetic" class="logo" />
 
-    <h1>Forging immersive worlds <br> 
-      and systems for tabletop adventures.</h1>
-    <p>Our website is under development. Stay tuned for more.</p>
+    <header>
+      <!-- Button bar -->
+      <nav class="button-bar" id="buttonBar">
+        <a href="MDS.html" class="hover-purple-glow nav-item"
+           data-desc="Learn about the MDS: its features, functions, how it works, and what it can do for your game!">
+           The Magnitude Dice System
+        </a>
 
-    <div class="projects">
-      Featuring:
-      <br />
-      <strong>Paths of Power</strong> &mdash; A universe of timelines, threads, and choice.<br />
-      <strong>Magnitude Dice System</strong> &mdash; From humble beginnings to unimaginable might.
-    </div>
+        <a href="PoP.html" class="hover-purple-glow nav-item"
+           data-desc="Explore Paths of Power! Learn about the universe, the setting, and the grand adventure that awaits.">
+           Paths of Power
+        </a>
+
+        <a href="Mission.html" class="hover-purple-glow nav-item"
+           data-desc="Our mission, our values, and where Hypermancy Studios is headed next.">
+           Our Mission
+        </a>
+
+        <a href="Contact.html" class="hover-purple-glow nav-item"
+           data-desc="Questions, collaboration, or support? Reach out — we’d love to hear from you.">
+           Contact
+        </a>
+      </nav>
+
+      <!-- Expanding description panel (populates on hover/focus) -->
+      <div id="barExplain" class="bar-explain" aria-live="polite" aria-hidden="true">
+        <p class="explain-text"></p>
+
+        <!-- Hand-drawn frame -->
+        <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M3,7
+                   Q8,5 13,6
+                   L87,4
+                   Q93,5 96,8
+                   L97,32
+                   Q94,35 88,36
+                   L12,35
+                   Q6,34 3,30
+                   Z" />
+        </svg>
+      </div>
+    </header>
+
+    <!-- Dyslexic toggle (styled + handled by mds.css/mds.js) -->
+    <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
+      Dyslexic font
+    </button>
+
+    <section class="content-card projects">
+      Featuring:<br />
+      <strong>Paths of Power</strong> — A universe of timelines, threads, and choice.<br />
+      <strong>Magnitude Dice System</strong> — From humble beginnings to unimaginable might.
+    </section>
+
+    <section class="content-card notice">
+      We ask for patience as our site comes together. Hypermancy Studios is a fledgling company with limited support for the time being.<br>
+      As our team grows things will advance more quickly, but for the moment advancements are constrained to the activity of one person.
+      Thank you for any support. Contacts and Mission statements will be active soon.
+    </section>
   </main>
 
   <footer>
     &copy; 2025 Hypermancy Studios Limited
   </footer>
 
-  <div class="side-buttons">
-    <div class="side-button">
-      <a href="mds.html" aria-label="View Magnitude Dice System page"><span class="icon">🎲</span>Magnitude Dice System</a>
-    </div>
-    <div class="side-button">
-      <a href="PoP.html" aria-label="View Paths of Power page"><span class="icon">🌌</span>Paths of Power</a>
-    </div>
-    <div class="side-button">
-      <a href="mission.html" aria-label="View Mission page"><span class="icon">🧭</span>Mission</a>
-    </div>
-    <div class="side-button">
-      <a href="Contact.html" aria-label="Contact Hypermancy Studios"><span class="icon">📬</span>Contact</a>
-    </div>
-  </div>
+  <script>
+  /* Smoke overlay (unchanged) */
+  (() => {
+    const canvas = document.getElementById('smoke');
+    if (!canvas) return;
 
+    const lowCore = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+    if (lowCore && innerWidth < 768) { canvas.remove(); return; }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { canvas.remove(); return; }
+
+    const ctx = canvas.getContext('2d', { alpha: true });
+
+    let offscreen, octx;
+    if ('OffscreenCanvas' in window) {
+      offscreen = new OffscreenCanvas(1, 1);
+      octx = offscreen.getContext('2d');
+    } else {
+      offscreen = document.createElement('canvas');
+      octx = offscreen.getContext('2d');
+    }
+
+    let img, data, DPR = 1;
+    function allocOffscreen(){
+      img = octx.createImageData(offscreen.width, offscreen.height);
+      data = img.data;
+    }
+
+    function resize(){
+      DPR = Math.min(2, window.devicePixelRatio || 1);
+      const w = innerWidth, h = innerHeight;
+
+      canvas.width  = Math.round(w * DPR);
+      canvas.height = Math.round(h * DPR);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+      const scale = 4;
+      offscreen.width  = Math.max(200, Math.round(w / scale));
+      offscreen.height = Math.max(150, Math.round(h / scale));
+      allocOffscreen();
+    }
+
+    resize();
+    addEventListener('resize', () => { clearTimeout(resize._t); resize._t = setTimeout(resize, 120); });
+
+    function noise(x, y, t){
+      const n1 = Math.sin(x*0.02 + t*0.5) * Math.cos(y*0.015 + t*0.3);
+      const n2 = Math.sin(x*0.011 + t*0.27) * Math.sin(y*0.013 + t*0.41);
+      return (n1 + n2) * 0.5 + 0.5;
+    }
+
+    const saveData = navigator.connection?.saveData;
+    let targetFPS = saveData ? 16 : 24;
+    let frameMs = 1000 / targetFPS;
+
+    let last = 0, paused = false, rafId;
+    document.addEventListener('visibilitychange', () => { paused = document.hidden; });
+
+    function render(ts){
+      if (paused) { rafId = requestAnimationFrame(render); return; }
+      if (ts - last < frameMs) { rafId = requestAnimationFrame(render); return; }
+      last = ts;
+
+      const w = offscreen.width, h = offscreen.height;
+      const t = ts * 0.0001;
+
+      let i = 0;
+      for (let y=0; y<h; y++){
+        for (let x=0; x<w; x++){
+          const n = noise(x, y, t);
+          const a = Math.max(0, Math.min(255, (n - 0.36) * 420));
+          data[i++] = 255; data[i++] = 255; data[i++] = 255; data[i++] = a;
+        }
+      }
+      octx.putImageData(img, 0, 0);
+
+      const W = canvas.width / DPR, H = canvas.height / DPR;
+      ctx.clearRect(0, 0, W, H);
+
+      const styles = getComputedStyle(document.documentElement);
+      const c1 = styles.getPropertyValue('--smoke-a').trim() || '#0a7fb3';
+      const c2 = styles.getPropertyValue('--smoke-b').trim() || '#3aa4c7';
+      const c3 = styles.getPropertyValue('--smoke-c').trim() || '#001e28';
+      const grad = ctx.createLinearGradient(0, 0, W, H);
+      grad.addColorStop(0.00, c1);
+      grad.addColorStop(0.60, c2);
+      grad.addColorStop(1.00, c3);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.globalCompositeOperation = 'destination-in';
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(offscreen, 0, 0, W, H);
+      ctx.globalCompositeOperation = 'source-over';
+
+      rafId = requestAnimationFrame(render);
+    }
+
+    (document.readyState === 'complete')
+      ? requestAnimationFrame(render)
+      : addEventListener('load', () => requestAnimationFrame(render), { once:true });
+  })();
+  </script>
+
+  <script>
+    // Button bar: show/hide and populate the description panel
+    (() => {
+      const bar   = document.getElementById('buttonBar');
+      const panel = document.getElementById('barExplain');
+      const text  = panel.querySelector('.explain-text');
+      let hideTimer;
+
+      function show(desc) {
+        clearTimeout(hideTimer);
+        text.textContent = desc || '';
+        panel.classList.add('show');
+        panel.setAttribute('aria-hidden', 'false');
+      }
+      function scheduleHide() {
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => {
+          panel.classList.remove('show');
+          panel.setAttribute('aria-hidden', 'true');
+          text.textContent = '';
+        }, 120);
+      }
+
+      bar.addEventListener('mouseover', (e) => {
+        const link = e.target.closest('.nav-item');
+        if (!link) return;
+        show(link.dataset.desc || link.title || link.textContent.trim());
+      });
+
+      bar.addEventListener('focusin', (e) => {
+        const link = e.target.closest('.nav-item');
+        if (!link) return;
+        show(link.dataset.desc || link.title || link.textContent.trim());
+      });
+
+      bar.addEventListener('mouseout', (e) => {
+        if (!bar.contains(e.relatedTarget)) scheduleHide();
+      });
+      bar.addEventListener('focusout', () => {
+        if (!bar.contains(document.activeElement)) scheduleHide();
+      });
+
+      // Esc closes the panel
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') scheduleHide();
+      });
+    })();
+  </script>
 </body>
 </html>
