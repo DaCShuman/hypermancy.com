@@ -4,8 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hypermancy Studios</title>
+  <meta name="description" content="Hypermancy Studios - Creators of Paths of Power and the Magnitude Dice System. A universe of timelines, threads, and choice." />
   <meta name="theme-color" content="#04131a" />
-  <link rel="preload" as="image" href="StudiosFinal_Transp.png" />
+  
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="Hypermancy Studios" />
+  <meta property="og:description" content="Featuring Paths of Power and the Magnitude Dice System - From humble beginnings to unimaginable might." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/StudiosFinal.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <link rel="preload" as="image" href="StudiosFinal.svg" />
 
   <!-- Shared site CSS/JS -->
   <link rel="stylesheet" href="/css/mds.css">
@@ -18,7 +27,6 @@
       --bg-end:     #081e26;
 
       --text-primary: #ffffff;
-      /* Landing page palette (overrides mds.css if different) */
       --accent-green: #00ff64;
       --accent-purple: #b58cff;
 
@@ -35,6 +43,24 @@
     }
 
     * { box-sizing: border-box; }
+
+    /* Skip to content link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--accent-purple);
+      color: var(--bg-primary);
+      padding: 8px 16px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 0 0 4px 0;
+      z-index: 100;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
 
     body {
       margin: 0 auto;
@@ -53,8 +79,10 @@
       position: relative;
       overflow-x: hidden;
       isolation: isolate;
+      scroll-behavior: smooth;
     }
 
+    /* Simple gradient fallback that shows immediately */
     body::before {
       content: '';
       position: fixed;
@@ -67,13 +95,30 @@
       z-index: -1;
     }
 
-    /* Text utility extras (mds.css already has .text-accent/.text-purple/etc.) */
+    /* Utility classes */
     .text-muted    { color: rgba(255,255,255,.7); }
     .text-warning  { color: #ffb84d; }
     .text-danger   { color: #ff6b6b; }
     .text-glow     { text-shadow: 0 0 6px currentColor; }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
 
-    /* Hover-only purple + glow opt-in */
+    /* Enhanced focus styles for all interactive elements */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent-purple);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
     .hover-purple-glow {
       color: inherit;
       text-shadow: none;
@@ -108,6 +153,7 @@
       text-shadow: 0 0 8px rgba(255, 255, 255, 0.22);
     }
 
+    /* Enhanced content cards with hover effects */
     .content-card {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
@@ -116,6 +162,11 @@
       margin: 1em auto;
       backdrop-filter: blur(10px);
       max-width: 100%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .content-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
 
     .projects {
@@ -141,7 +192,7 @@
       z-index: 1;
     }
 
-    /* Smoke canvas overlay — toned down */
+    /* Smoke canvas with loading state */
     .smoke-canvas {
       position: fixed;
       inset: 0;
@@ -149,35 +200,18 @@
       height: 100vh;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.28;
+      opacity: 0;
       mix-blend-mode: soft-light;
       filter: blur(12px) contrast(108%);
+      transition: opacity 0.6s ease;
+    }
+    .smoke-canvas.loaded {
+      opacity: 0.28;
     }
 
-    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
-      .content-card{
-        backdrop-filter: none;
-        background: rgba(255,255,255,.08);
-        border-color: rgba(255,255,255,.16);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .smoke-canvas, .logo { animation: none; }
-      .smoke-canvas { display: none; }
-    }
-
-    @media (max-width: 480px) {
-      body::before {
-        background: radial-gradient(circle at 50% 50%, rgba(0, 60, 80, 0.12) 0%, transparent 70%);
-      }
-      .smoke-canvas { display: none; }
-    }
-
-    /* Minor override to mds.css: tighter spacing under the header bar */
     nav.button-bar { margin-bottom: 0.75rem; }
 
-    /* Expanding description panel under the button bar */
+    /* Enhanced description panel with better mobile handling */
     .bar-explain {
       position: relative;
       margin: 0 auto 1.5rem;
@@ -186,11 +220,9 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 12px;
-      padding: 0 1.1rem;        /* padding is applied once expanded */
-      overflow: clip;           /* keep frame edges clean */
+      padding: 0 1.1rem;
+      overflow: clip;
       backdrop-filter: blur(10px);
-
-      /* collapsed state */
       max-height: 0;
       opacity: 0;
       transform: translateY(-6px) scaleY(.98);
@@ -198,7 +230,7 @@
       transition: max-height .35s ease, opacity .25s ease, transform .35s ease, padding .25s ease;
     }
     .bar-explain.show {
-      max-height: 220px;        /* ample for two lines of copy */
+      max-height: 220px;
       opacity: 1;
       transform: translateY(0) scaleY(1);
       padding: .85rem 1.1rem 1rem;
@@ -210,7 +242,6 @@
       text-align: center;
     }
 
-    /* Hand-drawn frame */
     .scribble-frame {
       position: absolute;
       inset: -8px;
@@ -227,17 +258,55 @@
       stroke-linejoin: round;
       filter: drop-shadow(0 0 6px rgba(181,140,255,.25));
     }
+
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))){
+      .content-card, .bar-explain {
+        backdrop-filter: none;
+        background: rgba(255,255,255,.08);
+        border-color: rgba(255,255,255,.16);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .smoke-canvas { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .bar-explain.show {
+        max-height: 280px;
+      }
+      .bar-explain p {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body::before {
+        background: radial-gradient(circle at 50% 50%, rgba(0, 60, 80, 0.12) 0%, transparent 70%);
+      }
+      .smoke-canvas { display: none; }
+      .bar-explain.show {
+        max-height: 320px;
+      }
+    }
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
   <canvas id="smoke" class="smoke-canvas" aria-hidden="true"></canvas>
 
-  <main>
-    <img src="StudiosFinal_Transp.png" alt="Hypermancy Studios logo — stylized text with dark aesthetic" class="logo" />
+  <main id="main-content">
+    <img src="StudiosFinal.svg" alt="Hypermancy Studios logo — stylized text with dark aesthetic" class="logo" />
 
     <header>
-      <!-- Button bar -->
-      <nav class="button-bar" id="buttonBar">
+      <nav class="button-bar" id="buttonBar" aria-label="Main navigation">
         <a href="MDS.html" class="hover-purple-glow nav-item"
            data-desc="Learn about the MDS: its features, functions, how it works, and what it can do for your game!">
            The Magnitude Dice System
@@ -248,52 +317,42 @@
            Paths of Power
         </a>
 
-        <a href="mission.html" class="hover-purple-glow nav-item"
+        <a href="Mission.html" class="hover-purple-glow nav-item"
            data-desc="Our mission, our values, and where Hypermancy Studios is headed next.">
            Our Mission
         </a>
 
         <a href="Contact.html" class="hover-purple-glow nav-item"
-           data-desc="Questions, collaboration, or support? Reach out — we’d love to hear from you.">
+           data-desc="Questions, collaboration, or support? Reach out — we'd love to hear from you.">
            Contact
         </a>
       </nav>
 
-      <!-- Expanding description panel (populates on hover/focus) -->
-      <div id="barExplain" class="bar-explain" aria-live="polite" aria-hidden="true">
+      <div id="barExplain" class="bar-explain" role="status" aria-live="polite" aria-hidden="true">
         <p class="explain-text"></p>
-
-        <!-- Hand-drawn frame -->
         <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M3,7
-                   Q8,5 13,6
-                   L87,4
-                   Q93,5 96,8
-                   L97,32
-                   Q94,35 88,36
-                   L12,35
-                   Q6,34 3,30
-                   Z" />
+          <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z" />
         </svg>
       </div>
     </header>
 
-    <!-- Dyslexic toggle (styled + handled by mds.css/mds.js) -->
     <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
       Dyslexic font
     </button>
 
-    <section class="content-card projects">
-      Featuring:<br />
+    <article class="content-card projects">
+      <h2 class="visually-hidden">Our Projects</h2>
+      <p>Featuring:<br />
       <strong>Paths of Power</strong> — A universe of timelines, threads, and choice.<br />
-      <strong>Magnitude Dice System</strong> — From humble beginnings to unimaginable might.
-    </section>
+      <strong>Magnitude Dice System</strong> — From humble beginnings to unimaginable might.</p>
+    </article>
 
-    <section class="content-card notice">
-      We ask for patience as our site comes together. Hypermancy Studios is a fledgling company with limited support for the time being.<br>
+    <article class="content-card notice">
+      <h2 class="visually-hidden">Development Notice</h2>
+      <p>We ask for patience as our site comes together. Hypermancy Studios is a fledgling company with limited support for the time being.<br>
       As our team grows things will advance more quickly, but for the moment advancements are constrained to the activity of one person.
-      Thank you for any support. Contacts and Mission statements will be active soon.
-    </section>
+      Thank you for any support. Contacts and Mission statements will be active soon.</p>
+    </article>
   </main>
 
   <footer>
@@ -301,118 +360,140 @@
   </footer>
 
   <script>
-  /* Smoke overlay (unchanged) */
+  /* Enhanced smoke overlay with error handling and loading state */
   (() => {
     const canvas = document.getElementById('smoke');
     if (!canvas) return;
 
-    const lowCore = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
-    if (lowCore && innerWidth < 768) { canvas.remove(); return; }
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { canvas.remove(); return; }
+    try {
+      const lowCore = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+      if (lowCore && innerWidth < 768) { canvas.remove(); return; }
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) { canvas.remove(); return; }
 
-    const ctx = canvas.getContext('2d', { alpha: true });
-
-    let offscreen, octx;
-    if ('OffscreenCanvas' in window) {
-      offscreen = new OffscreenCanvas(1, 1);
-      octx = offscreen.getContext('2d');
-    } else {
-      offscreen = document.createElement('canvas');
-      octx = offscreen.getContext('2d');
-    }
-
-    let img, data, DPR = 1;
-    function allocOffscreen(){
-      img = octx.createImageData(offscreen.width, offscreen.height);
-      data = img.data;
-    }
-
-    function resize(){
-      DPR = Math.min(2, window.devicePixelRatio || 1);
-      const w = innerWidth, h = innerHeight;
-
-      canvas.width  = Math.round(w * DPR);
-      canvas.height = Math.round(h * DPR);
-      canvas.style.width = w + 'px';
-      canvas.style.height = h + 'px';
-      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-
-      const scale = 4;
-      offscreen.width  = Math.max(200, Math.round(w / scale));
-      offscreen.height = Math.max(150, Math.round(h / scale));
-      allocOffscreen();
-    }
-
-    resize();
-    addEventListener('resize', () => { clearTimeout(resize._t); resize._t = setTimeout(resize, 120); });
-
-    function noise(x, y, t){
-      const n1 = Math.sin(x*0.02 + t*0.5) * Math.cos(y*0.015 + t*0.3);
-      const n2 = Math.sin(x*0.011 + t*0.27) * Math.sin(y*0.013 + t*0.41);
-      return (n1 + n2) * 0.5 + 0.5;
-    }
-
-    const saveData = navigator.connection?.saveData;
-    let targetFPS = saveData ? 16 : 24;
-    let frameMs = 1000 / targetFPS;
-
-    let last = 0, paused = false, rafId;
-    document.addEventListener('visibilitychange', () => { paused = document.hidden; });
-
-    function render(ts){
-      if (paused) { rafId = requestAnimationFrame(render); return; }
-      if (ts - last < frameMs) { rafId = requestAnimationFrame(render); return; }
-      last = ts;
-
-      const w = offscreen.width, h = offscreen.height;
-      const t = ts * 0.0001;
-
-      let i = 0;
-      for (let y=0; y<h; y++){
-        for (let x=0; x<w; x++){
-          const n = noise(x, y, t);
-          const a = Math.max(0, Math.min(255, (n - 0.36) * 420));
-          data[i++] = 255; data[i++] = 255; data[i++] = 255; data[i++] = a;
-        }
+      const ctx = canvas.getContext('2d', { alpha: true });
+      if (!ctx) {
+        console.warn('Canvas 2D context not available');
+        canvas.remove();
+        return;
       }
-      octx.putImageData(img, 0, 0);
 
-      const W = canvas.width / DPR, H = canvas.height / DPR;
-      ctx.clearRect(0, 0, W, H);
+      let offscreen, octx;
+      if ('OffscreenCanvas' in window) {
+        offscreen = new OffscreenCanvas(1, 1);
+        octx = offscreen.getContext('2d');
+      } else {
+        offscreen = document.createElement('canvas');
+        octx = offscreen.getContext('2d');
+      }
 
-      const styles = getComputedStyle(document.documentElement);
-      const c1 = styles.getPropertyValue('--smoke-a').trim() || '#0a7fb3';
-      const c2 = styles.getPropertyValue('--smoke-b').trim() || '#3aa4c7';
-      const c3 = styles.getPropertyValue('--smoke-c').trim() || '#001e28';
-      const grad = ctx.createLinearGradient(0, 0, W, H);
-      grad.addColorStop(0.00, c1);
-      grad.addColorStop(0.60, c2);
-      grad.addColorStop(1.00, c3);
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, W, H);
+      let img, data, DPR = 1;
+      function allocOffscreen(){
+        img = octx.createImageData(offscreen.width, offscreen.height);
+        data = img.data;
+      }
 
-      ctx.globalCompositeOperation = 'destination-in';
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = 'high';
-      ctx.drawImage(offscreen, 0, 0, W, H);
-      ctx.globalCompositeOperation = 'source-over';
+      function resize(){
+        DPR = Math.min(2, window.devicePixelRatio || 1);
+        const w = innerWidth, h = innerHeight;
 
-      rafId = requestAnimationFrame(render);
+        canvas.width  = Math.round(w * DPR);
+        canvas.height = Math.round(h * DPR);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+        const scale = 4;
+        offscreen.width  = Math.max(200, Math.round(w / scale));
+        offscreen.height = Math.max(150, Math.round(h / scale));
+        allocOffscreen();
+      }
+
+      resize();
+      addEventListener('resize', () => { clearTimeout(resize._t); resize._t = setTimeout(resize, 120); });
+
+      function noise(x, y, t){
+        const n1 = Math.sin(x*0.02 + t*0.5) * Math.cos(y*0.015 + t*0.3);
+        const n2 = Math.sin(x*0.011 + t*0.27) * Math.sin(y*0.013 + t*0.41);
+        return (n1 + n2) * 0.5 + 0.5;
+      }
+
+      const saveData = navigator.connection?.saveData;
+      let targetFPS = saveData ? 16 : 24;
+      let frameMs = 1000 / targetFPS;
+
+      let last = 0, paused = false, rafId, frameCount = 0;
+      document.addEventListener('visibilitychange', () => { paused = document.hidden; });
+
+      function render(ts){
+        if (paused) { rafId = requestAnimationFrame(render); return; }
+        if (ts - last < frameMs) { rafId = requestAnimationFrame(render); return; }
+        last = ts;
+
+        // Show canvas after first few frames render
+        if (frameCount === 2) {
+          canvas.classList.add('loaded');
+        }
+        frameCount++;
+
+        const w = offscreen.width, h = offscreen.height;
+        const t = ts * 0.0001;
+
+        let i = 0;
+        for (let y=0; y<h; y++){
+          for (let x=0; x<w; x++){
+            const n = noise(x, y, t);
+            const a = Math.max(0, Math.min(255, (n - 0.36) * 420));
+            data[i++] = 255; data[i++] = 255; data[i++] = 255; data[i++] = a;
+          }
+        }
+        octx.putImageData(img, 0, 0);
+
+        const W = canvas.width / DPR, H = canvas.height / DPR;
+        ctx.clearRect(0, 0, W, H);
+
+        const styles = getComputedStyle(document.documentElement);
+        const c1 = styles.getPropertyValue('--smoke-a').trim() || '#0a7fb3';
+        const c2 = styles.getPropertyValue('--smoke-b').trim() || '#3aa4c7';
+        const c3 = styles.getPropertyValue('--smoke-c').trim() || '#001e28';
+        const grad = ctx.createLinearGradient(0, 0, W, H);
+        grad.addColorStop(0.00, c1);
+        grad.addColorStop(0.60, c2);
+        grad.addColorStop(1.00, c3);
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(offscreen, 0, 0, W, H);
+        ctx.globalCompositeOperation = 'source-over';
+
+        rafId = requestAnimationFrame(render);
+      }
+
+      (document.readyState === 'complete')
+        ? requestAnimationFrame(render)
+        : addEventListener('load', () => requestAnimationFrame(render), { once:true });
+
+    } catch (error) {
+      console.error('Smoke canvas error:', error);
+      canvas.remove();
     }
-
-    (document.readyState === 'complete')
-      ? requestAnimationFrame(render)
-      : addEventListener('load', () => requestAnimationFrame(render), { once:true });
   })();
   </script>
 
   <script>
-    // Button bar: show/hide and populate the description panel
+    // Enhanced button bar with better mobile support
     (() => {
       const bar   = document.getElementById('buttonBar');
       const panel = document.getElementById('barExplain');
       const text  = panel.querySelector('.explain-text');
       let hideTimer;
+      let isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+      window.matchMedia('(max-width: 768px)').addEventListener('change', e => {
+        isMobile = e.matches;
+      });
 
       function show(desc) {
         clearTimeout(hideTimer);
@@ -420,16 +501,18 @@
         panel.classList.add('show');
         panel.setAttribute('aria-hidden', 'false');
       }
+      
       function scheduleHide() {
         clearTimeout(hideTimer);
         hideTimer = setTimeout(() => {
           panel.classList.remove('show');
           panel.setAttribute('aria-hidden', 'true');
           text.textContent = '';
-        }, 120);
+        }, isMobile ? 200 : 120);
       }
 
       bar.addEventListener('mouseover', (e) => {
+        if (isMobile) return;
         const link = e.target.closest('.nav-item');
         if (!link) return;
         show(link.dataset.desc || link.title || link.textContent.trim());
@@ -442,13 +525,28 @@
       });
 
       bar.addEventListener('mouseout', (e) => {
+        if (isMobile) return;
         if (!bar.contains(e.relatedTarget)) scheduleHide();
       });
+      
       bar.addEventListener('focusout', () => {
         if (!bar.contains(document.activeElement)) scheduleHide();
       });
 
-      // Esc closes the panel
+      // Mobile: show on tap/click
+      if (isMobile) {
+        bar.addEventListener('click', (e) => {
+          const link = e.target.closest('.nav-item');
+          if (!link) return;
+          e.preventDefault();
+          if (panel.classList.contains('show') && text.textContent === link.dataset.desc) {
+            window.location.href = link.href;
+          } else {
+            show(link.dataset.desc || link.title || link.textContent.trim());
+          }
+        });
+      }
+
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') scheduleHide();
       });
@@ -456,5 +554,3 @@
   </script>
 </body>
 </html>
-
-
