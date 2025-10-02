@@ -135,7 +135,7 @@ body.dyslexic-on{
 }
 
 /* Logo fade-in */
-.logo { max-width: 600px; width: 90%; height: auto; margin-bottom: 1.5em; opacity: 0; animation: fadeIn .4s ease-in-out forwards; }
+.logo { max-width: 600px; width: 90%; height: auto; margin-bottom: 1.5em; opacity: 0; animation: fadeIn 2.5s ease-in-out forwards; }
 @keyframes fadeIn { to { opacity: 1; } }
 
 /* Optional PoP-hero heading tone */
@@ -192,4 +192,19 @@ body.dyslexic-on{
 
 @media (max-width: 480px) {
   .table { font-size: .95rem; }
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
 }
