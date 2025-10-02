@@ -35,11 +35,32 @@
     .power-factors strong { color: rgb(233, 146, 7); }
 
     /* Hover-only purple + glow opt-in (site-wide nav visuals) */
-    .hover-purple-glow { color: inherit; text-shadow: none; transition: color .2s ease, text-shadow .2s ease; }
-    a.hover-purple-glow:hover, a.hover-purple-glow:focus-visible { color: var(--accent-purple); text-shadow: 0 0 6px var(--accent-purple); }
+    .hover-purple-glow { 
+      color: inherit; 
+      text-shadow: none; 
+      transition: color .2s ease, text-shadow .2s ease;
+      outline-offset: 2px;
+    }
+    a.hover-purple-glow:hover, a.hover-purple-glow:focus-visible { 
+      color: var(--accent-purple); 
+      text-shadow: 0 0 6px var(--accent-purple); 
+    }
+    a.hover-purple-glow:focus-visible {
+      outline: 2px solid var(--accent-purple);
+      outline-offset: 3px;
+    }
 
     /* Site-wide Button bar (index-style; mds.css provides base .button-bar/.nav-btn) */
     nav.button-bar.site-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:1em; margin-bottom:.75em; }
+
+    /* Section nav items - add focus styling */
+    nav.button-bar.section-nav a {
+      outline-offset: 2px;
+    }
+    nav.button-bar.section-nav a:focus-visible {
+      outline: 2px solid var(--accent-purple);
+      outline-offset: 3px;
+    }
 
     /* Expanding description panel under navs */
     .bar-explain {
@@ -60,6 +81,7 @@
       transform: translateY(-6px) scaleY(.98);
       transform-origin: top;
       transition: max-height .35s ease, opacity .25s ease, transform .35s ease, padding .25s ease;
+      will-change: max-height, opacity, transform;
     }
     .bar-explain.show {
       max-height: 220px;
@@ -99,7 +121,7 @@
            data-desc="Questions, collaboration, or support? Reach out to us.">
           Contact
         </a>
-        <a href="mission.html" class="hover-purple-glow nav-item"
+        <a href="Mission.html" class="hover-purple-glow nav-item"
            data-desc="Our mission, our values, and where we're headed next.">
           Our Mission
         </a>
@@ -118,17 +140,18 @@
     <header style="margin-top: .5rem;">
       <h1>Magnitude Dice System</h1>
 
-  <img src="MDS_Logo.png" alt="MDS_Logo" class="logo" />  
+  <img src="/Images/MDS_Logo_Enh.svg" alt="MDS_Logo" class="logo" />  
 
       <!-- MDS section-level nav -->
       <nav class="button-bar section-nav" data-explain-target="barExplainSection">
-        <a href="traits.html" data-desc="Core attributes that form your dice pools.">Traits</a>
-        <a href="talents.html" data-desc="Specializations that make actions easier or open new angles.">Talents</a>
-        <a href="abilities.html" data-desc="Active powers and techniques that drive action.">Abilities</a>
-        <a href="power-factors.html" data-desc="The resource pools that fuel your abilities.">Power Factors</a>
-        <a href="action-sequences.html" data-desc="Turn flow and how big moments unfold.">Action Sequences</a>
-        <a href="TheMods.html" data-desc="Environmental/gear/alterations and other roll modifiers.">The Mods</a>
-        <a href="CharacterCreation.html" data-desc="Step-by-step guide to building your character.">Character Creation</a>
+        <a href="traits.html" class="nav-item" data-desc="Core attributes that form your dice pools.">Traits</a>
+        <a href="talents.html" class="nav-item" data-desc="Specializations that make actions easier or open new angles.">Talents</a>
+        <a href="abilities.html" class="nav-item" data-desc="Active powers and techniques that drive action.">Abilities</a>
+        <a href="power-factors.html" class="nav-item" data-desc="The resource pools that fuel your abilities.">Power Factors</a>
+        <a href="action-sequences.html" class="nav-item" data-desc="Turn flow and how big moments unfold.">Action Sequences</a>
+        <a href="TheMods.html" class="nav-item" data-desc="Environmental/gear/alterations and other roll modifiers.">The Mods</a>
+        <a href="CharacterCreation.html" class="nav-item" data-desc="Step-by-step guide to building your character.">Character Creation</a>
+        <a href="S3_System.html" class="nav-item" data-desc="The S3 Storytelling System for structuring adventures.">S3 System</a>
       </nav>
 
       <div id="barExplainSection" class="bar-explain" aria-live="polite" aria-hidden="true">
@@ -139,8 +162,8 @@
       </div>
     </header>
 
-    <!-- Dyslexic toggle -->
-    <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
+    <!-- Dyslexic toggle with improved accessibility -->
+    <button id="dyslexicToggle" type="button" aria-pressed="false" aria-label="Toggle dyslexic-friendly font" class="nav-btn">
       Dyslexic font
     </button>
 
@@ -148,25 +171,8 @@
       <p>
         <span class="text-purple"><strong>Magnitude Dice System (MDS)</strong> is an open-license tabletop roleplaying engine built for scalable storytelling, flexible mechanics, and deeply customizable characters. At its core, MDS allows ordinary individuals to grow into legends, capable of bending the rules of reality through training, choice, and narrative consequence.<br>
         Upon debut, Paths of Power will feature the Magnitude Dice System. Explore a universe slightly altered from our own, where Sol System is thrust into a conspiracy spanning time, space and all of the Realms. This is a living breathing universe that is still reeling from an incredible upheaval.</span><br>
-        <span class="text-danger">Earthlings find themselves secretly engaged with an enemy that measures calculated advancement across Eons and actively engaged against foes with millenia of experience of intrigue and war against one another.<br>
+        <span class="text-orange">Earthlings find themselves secretly engaged with an enemy that measures calculated advancement across Eons and actively engaged against foes with millenia of experience of intrigue and war against one another.<br>
         Do you have what it takes to follow a paths to achieve unfathomable power? Or will humanity falter and fail, falling prey to the denizens of stars and realms afar.</span>
-      </p>
-    </section>
-
-    <section>
-      <h2>The S3 Storytelling System</h2>
-      <p>
-        <span class="text-purple">The MDS stresses the use of a basic S3 system to assist in writing stories. All the Paths of Power modules will utilize the S3 system and the MDS core book will include a guide for new Storytellers.</span><br>
-        <strong>What does S3 stand for?</strong><br>
-        Story, Scene, Situation. Importantly, this sets a standard for <strong>Adventure Point</strong> payout. Adventure Points are to be utilized to advance character traits. A story is rated by the complexity of its scenes and upon completion delivers a mass payout of Adventure Points and likewise, each Scene is rated for a <strong>Adventure Point</strong> pay out based on the <strong>challenges</strong> and <strong>contests</strong> planned within. A big factor in the S3 system is to give the players agency to determine how they want to navigate a Scene.<br>
-        Whether the player group opts to infiltrate and avoid combat through stealth, rely on guile and wit to talk their way through, or... just... kill everything, the group will get a payout based on completion with bonuses for discoveries<br>
-        The MDS does its best to give players the capability to play the way they wish to and avoids a complication tied to the loss of Adventure Points, should the enemies be circumvented, rather than destroyed whole sale.
-      </p>
-    </section>
-
-    <section>
-      <p>
-        <span class="text-accent">This all may seem a tad bit elementary to seasoned writers, but our goal is to spread knowledge and teach new storytellers how to bridge the gap between their imagination to the tabletop, without abusing anyone with an insane learning curve. Should anyone want to create their own standalone story, we at Hypermancy will provide the foundation to do your own thing. Meanwhile, Paths of Power will feature modules ready to play, built from the S3 system with the intention of teaching the Magnitude Dice System.</span>
       </p>
     </section>
 
@@ -201,58 +207,132 @@
 
   <footer>&copy; 2025 Hypermancy Studios Limited</footer>
 
-  <!-- NAV PACK: behavior (multi-nav) -->
+  <!-- OPTIMIZED NAV SCRIPT: Uses event delegation and caching for better performance -->
   <script>
   (() => {
-    const navs = Array.from(document.querySelectorAll('nav.button-bar[data-explain-target]'));
-    if (!navs.length) return;
+    // Cache all navs and their panels once at initialization
+    const navConfigs = [];
+    const allNavs = document.querySelectorAll('nav.button-bar[data-explain-target]');
+    
+    // Early exit if no navs exist
+    if (!allNavs.length) return;
 
-    function bind(nav, panel){
-      const text = panel.querySelector('.explain-text');
-      let hideTimer;
-
-      function show(desc){
-        clearTimeout(hideTimer);
-        text.textContent = desc || '';
-        panel.classList.add('show');
-        panel.setAttribute('aria-hidden','false');
-      }
-      function scheduleHide(){
-        clearTimeout(hideTimer);
-        hideTimer = setTimeout(() => {
-          panel.classList.remove('show');
-          panel.setAttribute('aria-hidden','true');
-          text.textContent = '';
-        }, 120);
-      }
-
-      nav.addEventListener('mouseover', e => {
-        const link = e.target.closest('a[href]');
-        if (!link || !nav.contains(link)) return;
-        show(link.dataset.desc || link.title || link.textContent.trim());
-      });
-      nav.addEventListener('focusin', e => {
-        const link = e.target.closest('a[href]');
-        if (!link || !nav.contains(link)) return;
-        show(link.dataset.desc || link.title || link.textContent.trim());
-      });
-      nav.addEventListener('mouseout', e => {
-        const to = e.relatedTarget;
-        if (!to || !nav.contains(to)) scheduleHide();
-      });
-      nav.addEventListener('focusout', () => {
-        if (!nav.contains(document.activeElement)) scheduleHide();
-      });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') scheduleHide(); });
-    }
-
-    navs.forEach(nav => {
+    // Build config objects with cached DOM references
+    allNavs.forEach(nav => {
       const panelId = nav.getAttribute('data-explain-target');
       const panel = document.getElementById(panelId);
-      if (panel) bind(nav, panel);
+      if (!panel) return;
+
+      const textEl = panel.querySelector('.explain-text');
+      if (!textEl) return;
+
+      navConfigs.push({
+        nav,
+        panel,
+        textEl,
+        hideTimer: null
+      });
+    });
+
+    // Shared show/hide functions
+    function showPanel(config, description) {
+      // Clear any pending hide timer
+      if (config.hideTimer) {
+        clearTimeout(config.hideTimer);
+        config.hideTimer = null;
+      }
+      
+      config.textEl.textContent = description || '';
+      config.panel.classList.add('show');
+      config.panel.setAttribute('aria-hidden', 'false');
+    }
+
+    function scheduleHide(config) {
+      // Clear existing timer if present
+      if (config.hideTimer) {
+        clearTimeout(config.hideTimer);
+      }
+      
+      config.hideTimer = setTimeout(() => {
+        config.panel.classList.remove('show');
+        config.panel.setAttribute('aria-hidden', 'true');
+        config.textEl.textContent = '';
+        config.hideTimer = null;
+      }, 120);
+    }
+
+    // Find which nav config contains the target element
+    function findConfigForElement(element) {
+      for (const config of navConfigs) {
+        if (config.nav.contains(element)) {
+          return config;
+        }
+      }
+      return null;
+    }
+
+    // Single delegated mouseover handler for all navs
+    document.addEventListener('mouseover', (e) => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+
+      const config = findConfigForElement(link);
+      if (!config) return;
+
+      const desc = link.dataset.desc || link.title || link.textContent.trim();
+      showPanel(config, desc);
+    }, { passive: true });
+
+    // Single delegated focusin handler for all navs
+    document.addEventListener('focusin', (e) => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+
+      const config = findConfigForElement(link);
+      if (!config) return;
+
+      const desc = link.dataset.desc || link.title || link.textContent.trim();
+      showPanel(config, desc);
+    }, { passive: true });
+
+    // Single delegated mouseout handler
+    document.addEventListener('mouseout', (e) => {
+      const from = e.target.closest('a[href]');
+      if (!from) return;
+
+      const config = findConfigForElement(from);
+      if (!config) return;
+
+      const to = e.relatedTarget;
+      // Only hide if we're leaving the nav entirely
+      if (!to || !config.nav.contains(to)) {
+        scheduleHide(config);
+      }
+    }, { passive: true });
+
+    // Single delegated focusout handler
+    document.addEventListener('focusout', (e) => {
+      const from = e.target.closest('a[href]');
+      if (!from) return;
+
+      const config = findConfigForElement(from);
+      if (!config) return;
+
+      // Short delay to check if focus moved within same nav
+      setTimeout(() => {
+        if (!config.nav.contains(document.activeElement)) {
+          scheduleHide(config);
+        }
+      }, 0);
+    }, { passive: true });
+
+    // Global escape key handler
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        navConfigs.forEach(config => scheduleHide(config));
+      }
     });
   })();
   </script>
 </body>
 </html>
-
