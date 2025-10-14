@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magnitude Dice System</title>
+
+  <!-- Shared site CSS/JS -->
+  <link rel="stylesheet" href="/css/mds.css">
+  <script defer src="/js/mds.js" defer></script>
+
+  <style>
+    :root { 
+      /* keep page accent (same as default, but explicit here) */
+      --accent-green: #00ff99;
+      --text-primary: #ffffff;
+      --accent-purple: #b58cff;
+    }
+
+    main { width: 100%; max-width: 100%; }
+    header { margin-bottom: 2em; }
+    h1 { font-size: 2.5rem; margin-bottom: 0.5em; }
+    p  { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; }
+    @media (max-width: 768px) { h1 { font-size: 1.8rem; } p { font-size: 1rem; } }
+
+    /* Section (MDS-internal) button bar styling (uses mds.css base, keeps separate hook) */
+    nav.button-bar.section-nav {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 1em; margin-bottom: 2em;
+    }
+
+    /* Power Factors list */
+    .power-factors { list-style: none; padding: 0; text-align: left; max-width: 700px; margin: 0 auto; }
+    .power-factors li { margin-bottom: .5em; font-size: 1.1rem; }
+    .power-factors strong { color: rgb(233, 146, 7); }
+
+    /* Hover-only purple + glow opt-in (site-wide nav visuals) */
+    .hover-purple-glow { 
+      color: inherit; 
+      text-shadow: none; 
+      transition: color .2s ease, text-shadow .2s ease;
+      outline-offset: 2px;
+    }
+    a.hover-purple-glow:hover, a.hover-purple-glow:focus-visible { 
+      color: var(--accent-purple); 
+      text-shadow: 0 0 6px var(--accent-purple); 
+    }
+    a.hover-purple-glow:focus-visible {
+      outline: 2px solid var(--accent-purple);
+      outline-offset: 3px;
+    }
+
+    /* Site-wide Button bar (index-style; mds.css provides base .button-bar/.nav-btn) */
+    nav.button-bar.site-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:1em; margin-bottom:.75em; }
+
+    /* Section nav items - add focus styling */
+    nav.button-bar.section-nav a {
+      outline-offset: 2px;
+    }
+    nav.button-bar.section-nav a:focus-visible {
+      outline: 2px solid var(--accent-purple);
+      outline-offset: 3px;
+    }
+
+    /* Expanding description panel under navs */
+    .bar-explain {
+      position: relative;
+      margin: 0 auto 1.5rem;
+      max-width: 900px;
+      color: var(--text-primary);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 12px;
+      padding: 0 1.1rem;
+      overflow: clip;
+      backdrop-filter: blur(10px);
+
+      /* collapsed state */
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-6px) scaleY(.98);
+      transform-origin: top;
+      transition: max-height .35s ease, opacity .25s ease, transform .35s ease, padding .25s ease;
+      will-change: max-height, opacity, transform;
+    }
+    .bar-explain.show {
+      max-height: 220px;
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+      padding: .85rem 1.1rem 1rem;
+    }
+    .bar-explain p { margin: 0; font-size: 1rem; line-height: 1.55; text-align: center; }
+
+    .scribble-frame {
+      position: absolute; inset: -8px;
+      width: calc(100% + 16px); height: calc(100% + 16px);
+      pointer-events: none; opacity: .55;
+    }
+    .scribble-frame path {
+      fill:none; stroke: rgba(181,140,255,.55); stroke-width:2;
+      stroke-linecap:round; stroke-linejoin:round;
+      filter: drop-shadow(0 0 6px rgba(181,140,255,.25));
+    }
+  </style>
+</head>
+
+<body>
+
+    <img
+  class="logo"
+  src="/Images/StudiosFinal.svg"
+  alt="Hypermancy Studios logo"
+  fetchpriority="high"
+  width="600"/>    
+
+    <section>
+        <h1>Font Licensing</h1>
+            <p>
+            This site uses the OpenDyslexic font by Abbie Gonzalez.
+            OpenDyslexic is licensed under the SIL Open Font License, Version 1.1.
+            Copyright © 2011–2024 Abbie Gonzalez.
+            The font software is free to use, modify, and redistribute under the terms of the OFL.
+            </p>
+
+        <h1>Trademarks</h1>
+            <p>
+            Hypermancy Studios and the Magnitude Dice System (MDS), along with their associated logos, are trademarks and intellectual property of Hypermancy Studios Limited.
+            All other trademarks, logos, and names are the property of their respective owners and are used for identification purposes only.
+            </p>
+
+            <p>
+            <b>Paths of Power Logo Trademark Notice</b></br>
+            The Paths of Power logo, including its distinctive design and visual presentation in conjunction with the words Paths of Power, is a trademark of Hypermancy Studios Limited. Unauthorized use, reproduction, or modification of this logo is strictly prohibited.
+            </p>
+    </section>
+</body>
+
+<footer>
+      <a href="index.html" class="back-link">&larr; Return to Home</a>
+</footer>
