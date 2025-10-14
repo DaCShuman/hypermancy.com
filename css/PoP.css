@@ -134,6 +134,13 @@ body.dyslexic-on{
   color:#000;
 }
 
+html.dyslexic-on body,
+body.dyslexic-on{
+  font-family:'OpenDyslexic', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  line-height:1.65;
+  letter-spacing:0.02em;
+}
+
 /* Logo fade-in */
 .logo { max-width: 600px; width: 90%; height: auto; margin-bottom: 1.5em; opacity: 0; animation: fadeIn 2.5s ease-in-out forwards; }
 @keyframes fadeIn { to { opacity: 1; } }
