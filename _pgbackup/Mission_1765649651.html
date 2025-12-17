@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+        <title>Mission</title>         
+        <style>:root { --accent-green: #00ff99; } body { margin: 0 auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #020402; color: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 100vh; text-align: center; padding: 2em; max-width: 960px; } main { width: 100%; max-width: 100%; } header { margin-bottom: 2em; } h1 { font-size: 2.5rem; margin-bottom: 0.5em; } p { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; } /* text utilities (TOP-LEVEL, not inside p {}) */.text-accent { color: var(--accent-green); } .text-purple { color: #b58cff; } .text-red { color: #e00303; } .text-green { color: #00ff99; } .text-orange { color: #ff8800; } .text-muted { color: rgba(255,255,255,.7); } .text-warning { color: #ffb84d; } .text-danger { color: #ff6b6b; } .text-glow { text-shadow: 0 0 6px currentColor; } a.back-link { margin-top: 2em; font-size: 0.9rem; color: #ccc; text-decoration: underline; } footer { margin-top: auto; font-size: 0.8rem; opacity: 0.4; padding-top: 2em; } @media (max-width: 768px) { h1 {  font-size: 1.8rem; }  p {  font-size: 1rem; } } nav.button-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 1em; margin-bottom: 2em; } nav.button-bar a { background-color: #222; color: #fff; border: 1px solid #555; border-radius: 6px; padding: 0.5em 1em; font-size: 1rem; text-decoration: none; transition: background-color 0.3s, border-color 0.3s; } nav.button-bar a:hover { background-color: rgba(196, 88, 1, 0.766); border-color: #888; } /* 1) Host OpenDyslexic yourself in /fonts */@font-face{ font-family: 'OpenDyslexic'; src: url('/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+      url('/fonts/OpenDyslexic-Regular.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; } /* 2) When the toggle is ON: allow class on <html> or <body> */.dyslexic-on body, body.dyslexic-on { font-family: 'OpenDyslexic', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.65;  /* a touch more line height helps legibility */ letter-spacing: 0.02em;  /* optional: tiny tracking */ } /* Optional: make the toggle look pressed when active */#dyslexicToggle[aria-pressed="true"] { background-color: var(--accent-green); color: #000; border-color: var(--accent-green); }</style>         
+        <link href="css/theme.css" rel="stylesheet" type="text/css">
+    </head>     
+    <body> 
+        <main> 
+            <header> 
+                <nav class="button-bar" id="buttonBar" data-explain-target="barExplain"> <a href="index.html" class="hover-purple-glow nav-item" data-desc="Return to the Hypermancy Studios homepage."> 
+          Hypermancy Studios </a> <a href="MDS.html" class="hover-purple-glow nav-item" data-desc="Explore the Magnitude Dice System, the core mechanic behind Paths of Power."> 
+          The Magnitude Dice System </a> <a href="PoP.html" class="hover-purple-glow nav-item" data-desc="Return to Paths of Power."> 
+          The Magnitude Dice System </a> 
+                </nav>
+                <img src="Images/StudiosFinal.svg" alt="Paths of Power Logo" class="logo"/>
+                <nav class="button-bar" id="buttonBar" data-explain-target="barExplain">                                                                
+</nav>
+                <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn"> 
+                    Dyslexic font
+</button>
+                <div> 
+                    <h1>The Hypermancy Mission</h1>
+                    <h2>Hypermancy Studios: Our Mission &amp; Philosophy</h2> 
+                </div>
+                <h3>Our Core Mission</h3>
+                <p>Hypermancy Studios empowers storytellers to craft bigger, braver stories. Through the open-licensed Magnitude Dice System (MDS), we enhance player agency with a story-first toolkit that never neglects the potential for epic power. We design tools that turn imagination into action and help stories evolve from the ordinary to the extraordinary.</p>
+                <h3>Our Values and Promise</h3>
+                <p>We are guided by the values of Creativity, Accessibility, and Respect.
+</p>
+                <p>We commit to stewarding a community where storytelling thrives and ethical design endures.
+</p>
+                <p>
+We will always honor player ingenuity and equip Game Masters with robust tools to govern their tables and tell their stories with confidence and clarity.</p>
+                <h3>The Magnitude Dice System
+</h3>
+                <p>The Magnitude Dice System is a story-first, power-not-neglected engine. It equips creators with open and accessible mechanics designed to measure and amplify the extraordinary, ensuring storytelling is always empowered, never restricted.
+</p>
+                <h3>Paths of Power
+</h3>
+                <p>Our flagship setting, Paths of Power, embodies a Nobledark in essence. <br>&nbsp;Dark - The universe is brutal. Life is hard. Everyone has been suffering across the Realms for millennia. <br>&nbsp;Noble - Your characters impact the universe. 
+Heroes can, and will do great things that will impact the universe. <br>We are beings of hope, and in a universe drawn apart, we dream of bringing everything back together. These are the Paths of Power that heroes walk.</p> 
+            </header>                                       <a href="index.html" class="back-link">&larr; Return to Home</a> 
+        </main>         
+        <footer> 
+            &copy; 2025 Hypermancy Studios Limited
+</footer>         
+        <script>
+  // Apply saved preference ASAP (prevents a flash)
+  (function () {
+    try {
+      if (localStorage.getItem('dyslexic') === '1') {
+        document.documentElement.classList.add('dyslexic-on');
+      }
+    } catch (e) {}
+  })();
+
+  // Wire up the toggle
+  window.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('dyslexicToggle');
+    if (!btn) return;
+
+    const setState = (on) => {
+      document.documentElement.classList.toggle('dyslexic-on', on);
+      document.body.classList.toggle('dyslexic-on', on); // works either way
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      try { localStorage.setItem('dyslexic', on ? '1' : '0'); } catch (e) {}
+    };
+
+    // initialize button state from the early-applied class
+    setState(document.documentElement.classList.contains('dyslexic-on'));
+
+    btn.addEventListener('click', () => {
+      const on = !document.documentElement.classList.contains('dyslexic-on');
+      setState(on);
+    });
+  });
+</script>         
+    </body>     
+</html>

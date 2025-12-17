@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDS – Character Creation</title>
+
+  <!-- Apply saved dyslexic preference ASAP to reduce flash -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('dyslexic') === '1') {
+          document.documentElement.classList.add('dyslexic-on');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Shared MDS styles -->
+  <link rel="stylesheet" href="/css/mds.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Magnitude Dice System</h1>
+
+      <!-- MDS section navigation -->
+      <nav class="button-bar" data-explain-target="barExplainSection">
+        <a href="traits.html" data-desc="Core attributes that form your dice pools.">Traits</a>
+        <a href="talents.html" data-desc="Specializations that ease actions and open angles.">Talents</a>
+        <a href="abilities.html" data-desc="Active powers and techniques that drive action.">Abilities</a>
+        <a href="power-factors.html" data-desc="Resource pools that fuel abilities.">Power Factors</a>
+        <a href="action-sequences.html" data-desc="Turn flow and how big moments unfold.">Action Sequences</a>
+        <a href="TheMods.html" data-desc="Environment, gear, and other modifiers.">The Mods</a>
+        <a href="CharacterCreation.html" aria-current="page" data-desc="How does Character Creation work?"><strong>Character Creation</strong></a>
+        <a href="CharCreationTempl.html" aria-current="page" data-desc="Build a character step-by-step."><strong>Character Creation Worksheet</strong></a>
+
+      </nav>
+
+      <!-- Optional expanding description panel (mds.js will bind if present) -->
+      <div id="barExplainSection" class="bar-explain" aria-live="polite" aria-hidden="true">
+        <p class="explain-text"></p>
+        <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z" />
+        </svg>
+      </div>
+
+      <!-- Dyslexic font toggle -->
+      <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
+        Dyslexic font
+      </button>
+    </header>
+
+    <header>
+      <h1>Character Creation</h1>
+      <p class="text-muted">The Magnitude Dice System seeks to allow players to maintain agency over the creation of your own characters. This means that there is no template that dictates exactly how a character must be built with constrictions on creativity and concept.<br>
+        Instead, a profession and role system are utilized to help guide choices, along with lineage/species and background selections. Along the way you choose what tier different traits belong within and that will determine how many Skill Points are granted to Talents within those traits.<br>
+      </p>
+    </header>
+
+    <section class="quick-start">
+        <h2>Quick Start</h2>
+        <ol>
+            <li><strong>Professional &amp; Role:</strong> What you do defines your first and second tier Traits.</li>
+            <li><strong>Lineage or Species:</strong> Determines innate abilities and advantages or disadvantages.</li>
+            <li><strong>Background:</strong> Defines third tier Traits.</li>
+            <li><strong>Power Factors:</strong> Power Factors generate the pools of points necessary to activate special abilities.</li>
+            <li><strong>Traits and Talents:</strong> Set initial pools (e.g., Focus, Resonance, Phase, Psyche, Charge).</li>
+            <li><strong>Kit &amp; Contacts:</strong> Starting gear, bases, homes, vehicles and contacts.</li>
+            <li><strong>Finalize:</strong> Name, look, bonds, and agenda.</li>
+        </ol> 
+    </section>
+<!-- Step sections (edit freely) -->
+    <section>
+        <h2>Step 1 — Profession &amp; Role</h2>
+        <p>Define a professional title and role in relation to the profession. The role and profession will help guide your choice of traits and talents.<br>
+          Your role will define your primary Trait and your profession will define your secondary Traits.
+        </p>
+    </section>
+
+    <section>
+      <h2>Step 2 — Lineage or Species</h2>
+      <p>Choosing a lineage or species will determine innate abilities, as well as, advantages and disadvantages.</p>
+    </section>
+
+    <section>
+      <h2>Step 3 — Choose a Background</h2>
+      <p>Select three Third Tier talents that support your concept. Aside from the first and second tier, these are the traits your character has relied on the most to get by in life.</p>
+    </section>
+
+    <section>
+      <h2>Step 4 — Power Factors</h2>
+      <p>
+        Choose your Primary and Secondary Power Factors.
+      </p>
+
+              <ol>
+            <li><strong>Focus</strong> This is a measure of how <i>focused</i> your character is during a Scene. The more things they are concentrating on, the lower the focus drops.</li>
+            <li><strong>Psyche</strong> Determines psychic offensive and defensive capability a character has.</li>
+            <li><strong>Resonance</strong> Defines how in sync your character is with the energies of the environment. This is used to draw in Shikai or Mana energies to fuel magic.</li>
+            <li><strong>Phase</strong> This Power Factor represents your character's balance between body and soul. The more in <i>phase</i> these two aspects are, the more internal energy is generated.</li>
+            <li><strong>Charge</strong> This is under development, but Charge Systems replace either Resonance or Phase. This is a quantum biological technology that merges with a biological entity. It draws energy from whichever Power Factor it replaces, changing the Talent tree entirely.</li>
+        </ol> 
+    </section>
+
+    <section>
+      <h2>Step 5 — Traits and Talents</h2>
+      <p>It is now time to assign points to Talents. Your choice in placing certain traits on primary, secondary and tertiary tiers will determine how many points may be distributed to talents within those tiers.</p>
+    </section>
+
+    <section>
+      <h2>Step 6 — Kit &amp; Contacts</h2>
+      <p>
+        Add starting gear, contacts, and any vehicles, bases, or homes.
+      </p>
+    </section>
+
+    <section>
+      <h2>Step 7 — Finishing Touches</h2>
+      <ul>
+        <li>Name, look, quirks</li>
+        <li>Motivating agenda and short-term goal</li>
+        <li>Advancement plan (what you want to unlock next)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>
+        This is still under development. Internal playtests are being conducted to refine and improve the system.
+      </h2>
+
+      <p>
+        Soon closed public alpha testing will begin. After that pdf's will be made available for open beta testing. Please reach out with questions or suggestions about the material presented or the process.
+      </p>
+    </section>
+
+    <a href="MDS.html" class="back-link">&larr; Return to MDS Home</a>
+  </main>
+
+  <footer>&copy; 2025 Hypermancy Studios Limited</footer>
+
+  <!-- Shared MDS behavior (toggle + optional nav explain binding) -->
+  <script defer src="/js/mds.js"></script>
+</body>
+</html>

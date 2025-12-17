@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MDS – Character Creation</title>
+
+  <!-- Apply saved dyslexic preference ASAP -->
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('dyslexic') === '1') {
+          document.documentElement.classList.add('dyslexic-on');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Shared MDS styles -->
+  <link rel="stylesheet" href="/css/mds.css" />
+
+  <!-- Page-scoped helpers for summary/sheet layout -->
+  <style>
+    .sheet-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items:start; }
+    @media (max-width: 800px){ .sheet-grid{ grid-template-columns: 1fr; } }
+
+    .cc-card{ background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 1rem; }
+    .cc-card h3{ margin-top:.2rem; }
+
+    .field-row{ display:flex; gap:.5rem; align-items:baseline; margin:.35rem 0; }
+    .field-row label{ min-width: 9rem; color: rgba(255,255,255,.75); font-size:.95rem; }
+    .field{ border-bottom:1px dashed rgba(255,255,255,.35); min-height:1.6rem; flex:1; }
+    .field[contenteditable="true"]:focus{ outline: 2px solid var(--accent-green, #00ff99); border-radius:.2rem; }
+
+    .table-compact { width:100%; border-collapse: collapse; font-size:.95rem; }
+    .table-compact th, .table-compact td { border: 1px solid rgba(255,255,255,.2); padding:.35rem .5rem; text-align:left; }
+    .table-compact thead th { background: rgba(255,255,255,.06); }
+
+    .stack{ display:flex; flex-direction:column; gap:.5rem; }
+
+    /* Print helpers */
+    .no-print{}
+    @media print{
+      .no-print, nav.button-bar, #dyslexicToggle, .bar-explain, .back-link, footer { display:none !important; }
+      html, body { background:#fff !important; color:#000 !important; }
+      .cc-card{ background:#fff !important; border:1px solid #000 !important; }
+      .table-compact th, .table-compact td { border-color:#000 !important; }
+      .field{ border-bottom:1px solid #000 !important; }
+      a { color:#000 !important; text-decoration:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Magnitude Dice System</h1>
+
+      <!-- MDS section navigation -->
+      <nav class="button-bar" data-explain-target="barExplainSection">
+        <a href="traits.html" data-desc="Core attributes that form your dice pools.">Traits</a>
+        <a href="talents.html" data-desc="Specializations that ease actions and open angles.">Talents</a>
+        <a href="abilities.html" data-desc="Active powers and techniques that drive action.">Abilities</a>
+        <a href="power-factors.html" data-desc="Resource pools that fuel abilities.">Power Factors</a>
+        <a href="action-sequences.html" data-desc="Turn flow and how big moments unfold.">Action Sequences</a>
+        <a href="TheMods.html" data-desc="Environment, gear, and other modifiers.">The Mods</a>
+        <a href="CharacterCreation.html" aria-current="page" data-desc="Build a character step-by-step."><strong>Character Creation</strong></a>
+      </nav>
+
+      <!-- Expanding description panel -->
+      <div id="barExplainSection" class="bar-explain" aria-live="polite" aria-hidden="true">
+        <p class="explain-text"></p>
+        <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z" />
+        </svg>
+      </div>
+
+      <!-- Dyslexic font toggle -->
+      <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
+        Dyslexic font
+      </button>
+    </header>
+
+    <header>
+      <h1>Character Creation</h1>
+      <p class="text-muted">Use this guide to go from concept to a ready-to-play hero.</p>
+    </header>
+
+<section class="quick-start">
+  <h2>Quick Start</h2>
+        <ol>
+            <li><strong>Professional &amp; Role:</strong> What you do defines your first and second tier Traits.</li>
+            <li><strong>Lineage or Species:</strong> Determines innate abilities and advantages or disadvantages.</li>
+            <li><strong>Background:</strong> Defines third tier Traits.</li>
+            <li><strong>Power Factors:</strong> Power Factors generate the pools of points necessary to activate special abilities.</li>
+            <li><strong>Traits and Talents:</strong> Set initial pools (e.g., Focus, Resonance, Phase, Psyche, Charge).</li>
+            <li><strong>Kit &amp; Contacts:</strong> Starting gear, bases, homes, vehicles and contacts.</li>
+            <li><strong>Finalize:</strong> Name, look, bonds, and agenda.</li>
+        </ol> 
+    </section>
+
+
+
+    <!-- ===== Controls: Export / Import / Clear ===== -->
+    <section class="no-print" aria-label="Save and Load">
+      <div class="stack" style="align-items:flex-end">
+        <div>
+          <button id="ccExport" type="button" class="nav-btn">Export to JSON</button>
+          <button id="ccImportBtn" type="button" class="nav-btn">Import JSON</button>
+          <button id="ccClearAutosave" type="button" class="nav-btn">Clear Autosave</button>
+          <input id="ccImportFile" type="file" accept="application/json" hidden />
+        </div>
+        <small class="text-muted">
+          Tip: Your work auto-saves in this browser. Export a JSON file if you want to move devices or keep backups.
+        </small>
+      </div>
+    </section>
+
+    <!-- ===== Printable Character Summary ===== -->
+    <section aria-labelledby="summary-title">
+      <div class="stack no-print" style="align-items:flex-end">
+        <button type="button" class="nav-btn" onclick="window.print()">Print Character Summary</button>
+      </div>
+
+      <h2 id="summary-title">Printable Character Summary</h2>
+      <div class="sheet-grid" id="character-summary">
+        <!-- Left column: Identity -->
+        <div class="cc-card">
+          <h3>Identity</h3>
+
+          <div class="field-row">
+            <label for="char-name">Name</label>
+            <div id="char-name" class="field" contenteditable="true"></div>
+          </div>
+
+          <div class="field-row">
+            <label for="char-concept">Concept</label>
+            <div id="char-concept" class="field" contenteditable="true"></div>
+          </div>
+
+          <div class="field-row">
+            <label for="char-lineage">Lineage / Species</label>
+            <div id="char-lineage" class="field" contenteditable="true"></div>
+          </div>
+
+          <div class="field-row">
+            <label for="char-background">Background</label>
+            <div id="char-background" class="field" contenteditable="true"></div>
+          </div>
+
+          <div class="field-row">
+            <label for="char-player">Player</label>
+            <div id="char-player" class="field" contenteditable="true"></div>
+          </div>
+
+          <div class="field-row">
+            <label for="char-story">Story / Campaign</label>
+            <div id="char-story" class="field" contenteditable="true"></div>
+          </div>
+        </div>
+
+        <!-- Right column: Traits quick table -->
+        <div class="cc-card">
+          <h3>Traits</h3>
+          <table id="summary-traits" class="table-compact">
+            <thead><tr><th>Trait</th><th>Value</th></tr></thead>
+            <tbody>
+              <tr><td>Brawn</td><td contenteditable="true" data-key="Brawn"></td></tr>
+              <tr><td>Nimbleness</td><td contenteditable="true" data-key="Nimbleness"></td></tr>
+              <tr><td>Toughness</td><td contenteditable="true" data-key="Toughness"></td></tr>
+              <tr><td>Ki</td><td contenteditable="true" data-key="Ki"></td></tr>
+              <tr><td>Smarts</td><td contenteditable="true" data-key="Smarts"></td></tr>
+              <tr><td>Vibes</td><td contenteditable="true" data-key="Vibes"></td></tr>
+              <tr><td>Charm</td><td contenteditable="true" data-key="Charm"></td></tr>
+              <tr><td>Aura</td><td contenteditable="true" data-key="Aura"></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Full-width: Talents & Power Factors -->
+        <div class="cc-card" style="grid-column: 1 / -1;">
+          <h3>Talents (highlights)</h3>
+          <p id="summary-talents" contenteditable="true" class="text-muted">List key strengths and any notable negatives…</p>
+
+          <h3 style="margin-top:1rem;">Power Factors</h3>
+          <table id="summary-factors" class="table-compact">
+            <thead><tr><th>Factor</th><th>Pool</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Focus</td><td contenteditable="true" data-key="Focus.pool"></td><td contenteditable="true" data-key="Focus.notes"></td></tr>
+              <tr><td>Resonance</td><td contenteditable="true" data-key="Resonance.pool"></td><td contenteditable="true" data-key="Resonance.notes"></td></tr>
+              <tr><td>Phase</td><td contenteditable="true" data-key="Phase.pool"></td><td contenteditable="true" data-key="Phase.notes"></td></tr>
+              <tr><td>Psyche</td><td contenteditable="true" data-key="Psyche.pool"></td><td contenteditable="true" data-key="Psyche.notes"></td></tr>
+              <tr><td>Charge</td><td contenteditable="true" data-key="Charge.pool"></td><td contenteditable="true" data-key="Charge.notes"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Starter Character Sheet (layout scaffold) ===== -->
+    <section aria-labelledby="sheet-title">
+      <h2 id="sheet-title" style="margin-top:1.25rem;">Starter Character Sheet (Layout Scaffold)</h2>
+      <div class="sheet-grid">
+        <!-- Column A -->
+        <div class="cc-card">
+          <h3>Traits &amp; Dice Pools</h3>
+          <table id="sheet-traits" class="table-compact">
+            <thead><tr><th>Trait</th><th>Value</th><th>Dice</th></tr></thead>
+            <tbody>
+              <tr><td>Brawn</td><td contenteditable="true" data-key="Brawn.value"></td><td contenteditable="true" data-key="Brawn.dice"></td></tr>
+              <tr><td>Nimbleness</td><td contenteditable="true" data-key="Nimbleness.value"></td><td contenteditable="true" data-key="Nimbleness.dice"></td></tr>
+              <tr><td>Toughness</td><td contenteditable="true" data-key="Toughness.value"></td><td contenteditable="true" data-key="Toughness.dice"></td></tr>
+              <tr><td>Ki</td><td contenteditable="true" data-key="Ki.value"></td><td contenteditable="true" data-key="Ki.dice"></td></tr>
+              <tr><td>Smarts</td><td contenteditable="true" data-key="Smarts.value"></td><td contenteditable="true" data-key="Smarts.dice"></td></tr>
+              <tr><td>Vibes</td><td contenteditable="true" data-key="Vibes.value"></td><td contenteditable="true" data-key="Vibes.dice"></td></tr>
+              <tr><td>Charm</td><td contenteditable="true" data-key="Charm.value"></td><td contenteditable="true" data-key="Charm.dice"></td></tr>
+              <tr><td>Aura</td><td contenteditable="true" data-key="Aura.value"></td><td contenteditable="true" data-key="Aura.dice"></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cc-card">
+          <h3>Power Factors</h3>
+          <table id="sheet-factors" class="table-compact">
+            <thead><tr><th>Factor</th><th>Pool</th><th>Regen / Limits</th></tr></thead>
+            <tbody>
+              <tr><td>Focus</td><td contenteditable="true" data-key="Focus.pool"></td><td contenteditable="true" data-key="Focus.regen"></td></tr>
+              <tr><td>Resonance</td><td contenteditable="true" data-key="Resonance.pool"></td><td contenteditable="true" data-key="Resonance.regen"></td></tr>
+              <tr><td>Phase</td><td contenteditable="true" data-key="Phase.pool"></td><td contenteditable="true" data-key="Phase.regen"></td></tr>
+              <tr><td>Psyche</td><td contenteditable="true" data-key="Psyche.pool"></td><td contenteditable="true" data-key="Psyche.regen"></td></tr>
+              <tr><td>Charge</td><td contenteditable="true" data-key="Charge.pool"></td><td contenteditable="true" data-key="Charge.regen"></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cc-card">
+          <h3>Talents</h3>
+          <ul id="sheet-talents" contenteditable="true">
+            <li>Talent — rank/notes…</li>
+            <li>Talent — rank/notes…</li>
+          </ul>
+          <div class="text-muted" style="font-size:.9rem;">Tip: one line per key talent.</div>
+        </div>
+
+        <div class="cc-card">
+          <h3>Abilities</h3>
+          <ul id="sheet-abilities" contenteditable="true">
+            <li>Ability — cost / reqs / effect…</li>
+            <li>Ability — cost / reqs / effect…</li>
+          </ul>
+        </div>
+
+        <!-- Column B -->
+        <div class="cc-card">
+          <h3>Inventory &amp; Gear</h3>
+          <ul id="sheet-inventory" contenteditable="true">
+            <li>Item — load / rarity / special</li>
+            <li>Item — load / rarity / special</li>
+          </ul>
+        </div>
+
+        <div class="cc-card">
+          <h3>Bonds &amp; Contacts</h3>
+          <ul id="sheet-bonds" contenteditable="true">
+            <li>Name — relationship / leverage / vow</li>
+            <li>Name — relationship / leverage / vow</li>
+          </ul>
+        </div>
+
+        <div class="cc-card" style="grid-column: 1 / -1;">
+          <h3>Notes</h3>
+          <div id="sheet-notes" class="field" style="min-height:5rem;" contenteditable="true"></div>
+        </div>
+      </div>
+
+      <div class="stack no-print" style="align-items:flex-end; margin-top:.5rem;">
+        <button type="button" class="nav-btn" onclick="window.print()">Print Starter Sheet</button>
+      </div>
+    </section>
+
+    <a href="MDS.html" class="back-link">&larr; Return to MDS Home</a>
+  </main>
+
+  <footer>&copy; 2025 Hypermancy Studios Limited</footer>
+
+  <!-- Shared MDS behavior -->
+  <script defer src="/js/mds.js"></script>
+
+  <!-- Page behavior: autosave + export/import -->
+  <script>
+    (function(){
+      const LS_KEY = 'mds_cc_v1';
+
+      // Helpers
+      const getText = id => (document.getElementById(id)?.innerText ?? '').trim();
+      const setText = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val ?? ''; };
+
+      function readKeyedCells(container) {
+        const map = {};
+        container?.querySelectorAll('[data-key]')?.forEach(td => {
+          map[td.dataset.key] = td.innerText.trim();
+        });
+        return map;
+      }
+
+      function writeKeyedCells(container, map) {
+        if (!container || !map) return;
+        container.querySelectorAll('[data-key]')?.forEach(td => {
+          const k = td.dataset.key;
+          if (k in map) td.innerText = map[k] ?? '';
+        });
+      }
+
+      function listItems(id){
+        const ul = document.getElementById(id);
+        if (!ul) return [];
+        return Array.from(ul.querySelectorAll('li')).map(li => li.innerText.trim()).filter(Boolean);
+      }
+
+      function setListItems(id, items){
+        const ul = document.getElementById(id);
+        if (!ul) return;
+        ul.innerHTML = '';
+        (items ?? []).forEach(txt => {
+          const li = document.createElement('li');
+          li.innerText = txt;
+          ul.appendChild(li);
+        });
+        if (!items || !items.length){
+          const li = document.createElement('li');
+          li.innerText = '';
+          ul.appendChild(li);
+        }
+      }
+
+      function gatherData(){
+        return {
+          identity: {
+            name: getText('char-name'),
+            concept: getText('char-concept'),
+            lineage: getText('char-lineage'),
+            background: getText('char-background'),
+            player: getText('char-player'),
+            story: getText('char-story'),
+          },
+          summary: {
+            traits: readKeyedCells(document.getElementById('summary-traits')),
+            talentsText: getText('summary-talents'),
+            factors: readKeyedCells(document.getElementById('summary-factors')),
+          },
+          sheet: {
+            traits: readKeyedCells(document.getElementById('sheet-traits')),
+            factors: readKeyedCells(document.getElementById('sheet-factors')),
+            talents: listItems('sheet-talents'),
+            abilities: listItems('sheet-abilities'),
+            inventory: listItems('sheet-inventory'),
+            bonds: listItems('sheet-bonds'),
+            notes: getText('sheet-notes'),
+          },
+          meta: {
+            savedAt: new Date().toISOString(),
+            version: 1
+          }
+        };
+      }
+
+      function fillData(data){
+        if (!data) return;
+
+        // Identity
+        if (data.identity){
+          Object.entries(data.identity).forEach(([k,v]) => setText(`char-${k}`, v));
+        }
+
+        // Summary
+        if (data.summary){
+          writeKeyedCells(document.getElementById('summary-traits'), data.summary.traits);
+          setText('summary-talents', data.summary.talentsText ?? '');
+          writeKeyedCells(document.getElementById('summary-factors'), data.summary.factors);
+        }
+
+        // Sheet
+        if (data.sheet){
+          writeKeyedCells(document.getElementById('sheet-traits'), data.sheet.traits);
+          writeKeyedCells(document.getElementById('sheet-factors'), data.sheet.factors);
+          setListItems('sheet-talents', data.sheet.talents);
+          setListItems('sheet-abilities', data.sheet.abilities);
+          setListItems('sheet-inventory', data.sheet.inventory);
+          setListItems('sheet-bonds', data.sheet.bonds);
+          setText('sheet-notes', data.sheet.notes ?? '');
+        }
+      }
+
+      // Export
+      document.getElementById('ccExport')?.addEventListener('click', () => {
+        const data = gatherData();
+        const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        const safeName = (data.identity?.name || 'mds-character').replace(/[^\w\-]+/g,'_');
+        a.download = `${safeName}.json`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(a.href);
+      });
+
+      // Import
+      const importBtn = document.getElementById('ccImportBtn');
+      const importFile = document.getElementById('ccImportFile');
+      importBtn?.addEventListener('click', () => importFile?.click());
+      importFile?.addEventListener('change', async (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        try {
+          const text = await file.text();
+          const data = JSON.parse(text);
+          fillData(data);
+          // Save immediately after import
+          try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch(e){}
+        } catch(err) {
+          alert('Could not import: invalid JSON file.');
+        } finally {
+          importFile.value = '';
+        }
+      });
+
+      // Autosave (throttled)
+      let saveTimer;
+      function scheduleAutosave(){
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => {
+          const data = gatherData();
+          try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch(e){}
+        }, 400);
+      }
+
+      document.addEventListener('input', scheduleAutosave, true);
+
+      // Restore
+      try {
+        const raw = localStorage.getItem(LS_KEY);
+        if (raw) {
+          fillData(JSON.parse(raw));
+        }
+      } catch(e){}
+
+      // Clear autosave
+      document.getElementById('ccClearAutosave')?.addEventListener('click', () => {
+        try { localStorage.removeItem(LS_KEY); } catch(e){}
+      });
+
+    })();
+  </script>
+</body>
+</html>

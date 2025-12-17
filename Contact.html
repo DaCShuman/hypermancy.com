@@ -1,120 +1,214 @@
-<!-- Contact (Contact.html) -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
-  <style>
-    :root { --accent-green: #00ff99; }
+<!-- Contact (Contact.html) --> 
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>Contact</title>         
+        <style>:root { --accent-green: #00ff99; } body { background-color: #020402; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; } a.email { color: var(--accent-green); text-decoration: underline; text-underline-offset: 3px; } a.email:hover { text-decoration-thickness: 3px; filter: drop-shadow(0 0 6px var(--accent-green)); } /* text utilities */.text-accent { color: var(--accent-green); } .text-purple { color: #b58cff; } .text-red { color: #e00303; } .text-green { color: #00ff99; } .text-orange { color: #ff8800; } .text-muted { color: rgba(255,255,255,.7); } .text-warning { color: #ffb84d; } .text-danger { color: #ff6b6b; } .text-glow { text-shadow: 0 0 6px currentColor; } /* 1) Host OpenDyslexic yourself in /fonts */@font-face{ font-family: 'OpenDyslexic'; src: url('/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
+      url('/fonts/OpenDyslexic-Regular.woff') format('woff'); font-weight: 400; font-style: normal; font-display: swap; } /* 2) When the toggle is ON: allow class on <html> or <body> */.dyslexic-on body, body.dyslexic-on { font-family: 'OpenDyslexic', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.65;  /* a touch more line height helps legibility */ letter-spacing: 0.02em;  /* optional: tiny tracking */ } /* Optional: make the toggle look pressed when active */#dyslexicToggle[aria-pressed="true"] { background-color: var(--accent-green); color: #000; border-color: var(--accent-green); }</style>         
+        <link href="css/theme.css" rel="stylesheet" type="text/css">
+    </head>     
+    <body>
+        <style>
+        /* Hypermancy Studios - Global Theme & Reset */
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-secondary: #8b5cf6;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    body {
-      background-color: #020402;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      text-align: center;
-    }
+        body {
+            background-color: var(--bg-dark);
+            /* Subtle modern gradient background */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-    a.email {
-      color: var(--accent-green);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    a.email:hover {
-      text-decoration-thickness: 3px;
-      filter: drop-shadow(0 0 6px var(--accent-green));
-    }
+        /* Glassmorphism Card Container */
+        .contact-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 3.5rem 2.5rem;
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
 
-    /* text utilities */
-    .text-accent { color: var(--accent-green); }
-    .text-purple { color: #b58cff; }
-    .text-red { color: #e00303; }
-    .text-green { color: #00ff99; }
-    .text-orange{ color: #ff8800; }
-    .text-muted  { color: rgba(255,255,255,.7); }
-    .text-warning{ color: #ffb84d; }
-    .text-danger { color: #ff6b6b; }
-    .text-glow   { text-shadow: 0 0 6px currentColor; }
+        /* Top shine effect */
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
 
-    /* 1) Host OpenDyslexic yourself in /fonts */
-@font-face{
-  font-family:'OpenDyslexic';
-  src:url('/fonts/OpenDyslexic-Regular.woff2') format('woff2'),
-      url('/fonts/OpenDyslexic-Regular.woff') format('woff');
-  font-weight:400; font-style:normal; font-display:swap;
-}
+        h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin: 0 0 1.5rem 0;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-/* 2) When the toggle is ON: allow class on <html> or <body> */
-.dyslexic-on body,
-body.dyslexic-on{
-  font-family:'OpenDyslexic', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-  line-height:1.65;        /* a touch more line height helps legibility */
-  letter-spacing:0.02em;   /* optional: tiny tracking */
-}
+        p {
+            font-size: 1.125rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
 
-/* Optional: make the toggle look pressed when active */
-#dyslexicToggle[aria-pressed="true"]{
-  background-color: var(--accent-green);
-  color:#000;
-  border-color: var(--accent-green);
-}
-  </style>
-</head>
-<body>
-  <div>
-    <h1>Contact Us</h1>
+        /* Interactive Elements */
+        .email {
+            color: #818cf8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+        }
 
-    <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
-  Dyslexic font
+        .email:hover {
+            color: #a5b4fc;
+            border-bottom-color: #a5b4fc;
+        }
+
+        /* Dyslexic Toggle Button - Elegant Outline */
+        .nav-btn {
+            background: transparent;
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.05);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn[aria-pressed="true"] {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--accent-primary);
+            color: #fff;
+        }
+
+        /* Primary Action Button (Return) */
+        .return-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        }
+
+        .return-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* Dyslexic Font Support */
+        .dyslexic-on body, 
+        .dyslexic-on h1, 
+        .dyslexic-on p, 
+        .dyslexic-on a, 
+        .dyslexic-on button {
+            font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+        <div class="contact-card">
+            <h1>Contact Us</h1>
+            <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
+                Dyslexic font
 </button>
+            <p>
+            Please email <a class="email" href="mailto:studio@hypermancy.com?subject=Hypermancy%20Inquiry&body=Hi%20Hypermancy%20Studios,%0A%0A" aria-label="Email studio at hypermancy dot com">studio@hypermancy.com</a>
+            with any inquiries or suggestions. Thank you. </p><a href="index.html" class="return-btn">Return to Home</a>
+        </div>
+        <script>
+        // Apply saved preference ASAP (prevents a flash)
+        (function () {
+            try {
+                if (localStorage.getItem('dyslexic') === '1') {
+                    document.documentElement.classList.add('dyslexic-on');
+                }
+            } catch (e) {}
+        })();
 
-    <p>
-      Please email
-      <a
-        class="email"
-        href="mailto:studio@hypermancy.com?subject=Hypermancy%20Inquiry&body=Hi%20Hypermancy%20Studios,%0A%0A"
-        aria-label="Email studio at hypermancy dot com"
-      >studio@hypermancy.com</a>
-      with any inquiries or suggestions. Thank you.
-    </p>
-  </div>
+        // Wire up the toggle
+        window.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('dyslexicToggle');
+            if (!btn) return;
 
-  <script>
-  // Apply saved preference ASAP (prevents a flash)
-  (function () {
-    try {
-      if (localStorage.getItem('dyslexic') === '1') {
-        document.documentElement.classList.add('dyslexic-on');
-      }
-    } catch (e) {}
-  })();
+            const setState = (on) => {
+                document.documentElement.classList.toggle('dyslexic-on', on);
+                document.body.classList.toggle('dyslexic-on', on);
+                btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+                try {
+                    localStorage.setItem('dyslexic', on ? '1' : '0');
+                } catch (e) {}
+            };
 
-  // Wire up the toggle
-  window.addEventListener('DOMContentLoaded', function () {
-    const btn = document.getElementById('dyslexicToggle');
-    if (!btn) return;
+            // initialize button state from the early-applied class
+            setState(document.documentElement.classList.contains('dyslexic-on'));
 
-    const setState = (on) => {
-      document.documentElement.classList.toggle('dyslexic-on', on);
-      document.body.classList.toggle('dyslexic-on', on); // works either way
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      try { localStorage.setItem('dyslexic', on ? '1' : '0'); } catch (e) {}
-    };
-
-    // initialize button state from the early-applied class
-    setState(document.documentElement.classList.contains('dyslexic-on'));
-
-    btn.addEventListener('click', () => {
-      const on = !document.documentElement.classList.contains('dyslexic-on');
-      setState(on);
-    });
-  });
-</script>
-
-</body>
+            btn.addEventListener('click', () => {
+                const on = !document.documentElement.classList.contains('dyslexic-on');
+                setState(on);
+            });
+        });
+    </script>
+    </body>     
 </html>

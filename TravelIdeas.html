@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traversal & Transportation — Paths of Power</title>
+
+  <!-- PoP bundle -->
+  <link rel="stylesheet" href="/css/pop.css" />
+  <script src="/js/pop.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- Optional page image/hero (replace or remove as needed) -->
+    <!-- <img src="/Images/PathsOfPower1.jpg" alt="Paths of Power" class="logo" /> -->
+
+    <!-- Global PoP nav -->
+    <header>
+      <nav class="button-bar" id="buttonBar" data-explain-target="barExplain">
+        <a href="Index.html" class="hover-purple-glow nav-item"
+           data-desc="Return to the Hypermancy Studios homepage.">
+          Hypermancy Studios
+        </a>
+
+        <a href="MDS.html" class="hover-purple-glow nav-item"
+           data-desc="Explore the Magnitude Dice System, the core mechanic behind Paths of Power.">
+          The Magnitude Dice System
+        </a>
+
+        <a href="Realms.html" class="hover-purple-glow nav-item"
+           data-desc="Explore the rich cosmology and lore of the Realms, the multi-dimensional universe of PoP.">
+          The Realms
+        </a>
+
+        <a href="Species.html" class="hover-purple-glow nav-item"
+           data-desc="Explore the sapient creatures, entities, monsters and lineages across the Realms.">
+          Species of the Realms
+        </a>
+
+        <a href="Travel.html" class="hover-purple-glow nav-item" aria-current="page"
+           data-desc="How people, ships, and spirits move: roads, skyships, portals, ley lines, and more.">
+          Traversal &amp; Transportation
+        </a>
+      </nav>
+
+      <!-- Dyslexic toggle -->
+      <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
+        Dyslexic font
+      </button>
+
+      <!-- Hover/focus description panel -->
+      <div id="barExplain" class="bar-explain" aria-live="polite" aria-hidden="true">
+        <p class="explain-text"></p>
+        <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z" />
+        </svg>
+      </div>
+    </header>
+
+    <header>
+      <h1>Traversal &amp; Transportation</h1>
+      <p class="text-muted">How travelers cross cities, worlds, and realms in the Paths of Power universe.</p>
+    </header>
+
+    <!-- Overview -->
+    <section>
+      <h2>Overview</h2>
+      <p>
+        Movement in PoP ranges from the mundane to the mythical. Whether you’re booking passage on a skyship,
+        stepping through a gate keyed to a distant city, or surfing a ley-line current between Living Worlds, each method
+        has its own costs, risks, and requirements. As with everything in MDS, <strong>Traits</strong> set your dice pools,
+        <strong>Talents</strong> shape ease and options, and <strong>Mods</strong> reflect the Situation: weather, crowds,
+        security, Gusts, and more.
+      </p>
+    </section>
+
+    <!-- Mundane & Tech -->
+    <section>
+      <h2>Mundane &amp; Technological Travel</h2>
+      <p>
+        Roads, rails, ferries, suborbital hops, and starliners. Reliable—if slower—and widely available in stable regions.
+        Expect tolls, manifests, inspections, and the occasional shakedown in rough territories. Great for commerce,
+        caravans, and moving inconspicuously under official eyes.
+      </p>
+      <p class="text-muted">
+        Common checks: <em>Smarts: Technology</em> (tickets, routes, maintenance), <em>Smarts: Negotiation</em> (booking, bribes),
+        <em>Nimbleness: Sneak</em> (stowaway), <em>Vibes: Observation</em> (tails, traps).
+      </p>
+    </section>
+
+    <!-- Sky/Realm Ships -->
+    <section>
+      <h2>Skyships &amp; Realmships</h2>
+      <p>
+        Airborne craft ride steady winds—or brave the dreaded <em>Gusts</em>—between cities and even worlds. Realmships are
+        reinforced to survive inter-realm currents and employ navigators who can read windshears, mana tides, and Shikai
+        eddies. Passage is faster than roads, pricier than portals, and safer than raw ley-surfing—usually.
+      </p>
+      <p class="text-muted">
+        Common checks: <em>Nimbleness: Pilot/Ride</em> (helm), <em>Smarts: Engineering</em> (repairs), <em>Vibes: Observation</em> (weather),
+        <em>Ki: Kinesics</em> (fine control in turbulence). Mods spike during storms, dogfights, or low-visibility.
+      </p>
+    </section>
+
+    <!-- Portals & Gates -->
+    <section>
+      <h2>Portals, Gates &amp; Waylines</h2>
+      <p>
+        Ancient gates, keyed waylines, and temporary rifts allow near-instant traversal. Expect fees, keys, sigils,
+        permissions, or alignment windows. Miskeyed exits risk disorientation or hostile territory. Stable city gates are
+        heavily regulated; wild rifts appear where energies surge or reality thins.
+      </p>
+      <p class="text-muted">
+        Common checks: <em>Aura: Presence</em> (stabilize), <em>Aura: Kinetics</em> (shear dampening), <em>Smarts: Lore</em> (glyphs),
+        <em>Charm: Guile</em> (permits). <strong>Resonance</strong> and <strong>Psyche</strong> often mitigate jump-sickness.
+      </p>
+    </section>
+
+    <!-- Ley Lines -->
+    <section>
+      <h2>Ley-Line Sailing</h2>
+      <p>
+        Mana and Shikai channels form “currents” that seasoned navigators can ride on foot, in gliders, or aboard tuned craft.
+        Fast and elegant, but volatile during storms or near contested nodes. Lines may fork; inexperienced crews can get swept
+        into dangerous regions—or stranger places between.
+      </p>
+      <p class="text-muted">
+        Common checks: <em>Smarts: Lore</em> (maps & nodes), <em>Ki: Kinesics</em> (balance & flow), <em>Aura: Kinetics</em> (current shaping).
+        <strong>Resonance</strong> helps read flows; <strong>Phase</strong> empowers bodily attunement.
+      </p>
+    </section>
+
+    <!-- Spiritual/Astral -->
+    <section>
+      <h2>Spiritual Transit</h2>
+      <p>
+        Astral projection, spirit walking, psychopomp caravans, and ancestor routes through the Umbra. Superb for reconnaissance,
+        diplomacy, or bypassing physical blockades. Bodies must be guarded; tethers (anchors) must be maintained. Predatory entities
+        stalk the unwary.
+      </p>
+      <p class="text-muted">
+        Common checks: <em>Aura: Psionics</em> (focus), <em>Vibes: Attunement</em> (safe paths), <em>Toughness: Resolution</em> (hold form).
+        <strong>Psyche</strong> buffers mental strain; <strong>Resonance</strong> improves spirit-world clarity.
+      </p>
+    </section>
+
+    <!-- Mechanics hooks -->
+    <section>
+      <h2>Using Travel at the Table (Hooks)</h2>
+      <ul style="text-align:left; margin: 0 auto; max-width: 70ch;">
+        <li><strong>Time scales:</strong> Road days; skyship hours; portal moments; ley-line minutes (variable); spirit travel subjective.</li>
+        <li><strong>Costs:</strong> Road (low), skyship (medium), realmship (high), portal (tolls/keys), ley sailing (gear/guide), spiritual (offerings/anchors).</li>
+        <li><strong>Checks/Contests:</strong> Choose a leading Trait+Talent per mode; apply <em>Mods</em> for weather, regulations, crowds, Gusts, rift stability, etc.</li>
+        <li><strong>Complications:</strong> Delays, inspections, storms, misalignment, predators, shortages, sabotage.</li>
+        <li><strong>Power Factors:</strong> Spend <em>Resonance</em> to sense safe nodes; <em>Phase</em> for balance; <em>Psyche</em> to resist disorientation; <em>Charge</em> to overclock engines.</li>
+      </ul>
+    </section>
+
+    <!-- Quick Encounter Seeds -->
+<section>
+  <h2>Quick Encounter Seeds</h2>
+  <div class="table-wrap">
+    <table class="table table--compact table--zebra">
+      <caption class="text-muted">Roll or pick to spark travel scenes.</caption>
+      <thead>
+        <tr>
+          <th>d12</th>
+          <th>Mode</th>
+          <th>Prompt</th>
+          <th>Likely Mod</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Road/rail</td><td>Checkpoint shakedown—papers aren’t “quite” in order.</td><td>-1 to -2 (bureaucracy, time pressure)</td></tr>
+        <tr><td>2</td><td>Road/rail</td><td>Bridge ahead is out; locals know a treacherous detour.</td><td>-1 terrain; +1 if aided by guides</td></tr>
+        <tr><td>3</td><td>Skyship</td><td>Gust front forms suddenly—batten down or risk a spin.</td><td>-2 wind shear; spend Phase to stabilize</td></tr>
+        <tr><td>4</td><td>Skyship</td><td>Distress flare from a drifting courier balloon.</td><td>-1 visibility; +1 if Observation succeeds</td></tr>
+        <tr><td>5</td><td>Portal</td><td>Gate tax hike; smugglers offer a “cheaper” keyed exit.</td><td>-1 negotiation; +1 if Guile or Influence</td></tr>
+        <tr><td>6</td><td>Portal</td><td>Exit misalignment lands you in a restricted wing.</td><td>-2 security presence; +1 if Sneak</td></tr>
+        <tr><td>7</td><td>Ley-line</td><td>Cross-current from a Shikai eddy tries to peel you off-course.</td><td>-2 current; +1 if Kinetics control</td></tr>
+        <tr><td>8</td><td>Ley-line</td><td>Feral “line-leeches” sense power and swarm.</td><td>-1 distraction; +1 if Threat/Daunt</td></tr>
+        <tr><td>9</td><td>Spiritual</td><td>Psychopomps demand proper offerings for safe passage.</td><td>-1 ritual complexity; +1 with Lore or Psionics</td></tr>
+        <tr><td>10</td><td>Spiritual</td><td>A predator tests your tether—strengthen it or flee.</td><td>-2 strain; spend Psyche to resist</td></tr>
+        <tr><td>11</td><td>Any</td><td>Sabotage discovered moments before departure.</td><td>-1 time pressure; +1 if Engineering/Crime</td></tr>
+        <tr><td>12</td><td>Any</td><td>VIP passenger with enemies requests discreet escort.</td><td>Variable; +1 reward if successful</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+    <a href="PoP.html" class="back-link">&larr; Return to PoP</a>
+  </main>
+
+  <footer>&copy; 2025 Hypermancy Studios Limited</footer>
+</body>
+</html>

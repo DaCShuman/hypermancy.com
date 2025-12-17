@@ -1,0 +1,51 @@
+<project>
+    <documents></documents>
+    <dmdesigns>
+        <dmdesign active>
+            <dmdesignskill skill="plainhtml.colors">
+                <dmcolor key="primary" color="#0d6efd"/>
+                <dmcolor key="secondary" color="#e99e09"/>
+                <dmcolor key="color3" color="#0dcaf0"/>
+                <dmcolor key="color4" color="#34ed14"/>
+                <dmcolor key="white" color="white"/>
+                <dmcolor key="light" color="#f8f9fa"/>
+                <dmcolor key="dark" color="#212529"/>
+            </dmdesignskill>
+            <dmdesignskill skill="fonts" text_family="Titillium Web"></dmdesignskill>
+            <dmdesignskill skill="headings" h1_family="Proza Libre" h1_weight="bold" h1_color="primary" h1_effect="shadow" h1_smallcaps h1_uppercase h2_family="Fira Sans" h2_weight="bold" h2_color="secondary" h2_spacing="4px" h2_effect h2_smallcaps="small-caps" h2_uppercase h3_family="Quicksand" h3_weight="bold" h3_color="color3" h3_spacing="3px" h3_smallcaps="small-caps"></dmdesignskill>
+            <dmdesignskill skill="background" image_for_colors="true" advanced="true" filter_blur="0" filter_brightness="100" filter_contrast="100" filter_grayscale="0" filter_hue-rotate="0" filter_invert="0" filter_opacity="100" filter_saturate="100" filter_sepia="0"></dmdesignskill>
+            <dmdesignskill skill="plainhtml" reset="true"></dmdesignskill>
+        </dmdesign>
+        <dmdesign>
+            <dmdesignskill skill="plainhtml.colors">
+                <dmcolor key="primary" color="rgb(84 100 177)"/>
+                <dmcolor key="secondary" color="rgb(36 44 76)"/>
+                <dmcolor key="color3" color="rgb(156 153 212)"/>
+                <dmcolor key="color4" color="rgb(92 102 176)"/>
+                <dmcolor key="white" color="white"/>
+                <dmcolor key="light" color="#f8f9fa"/>
+                <dmcolor key="dark" color="#000000"/>
+            </dmdesignskill>
+            <dmdesignskill skill="fonts" text_family="Georgia, serif" headings_family="Expletus Sans" text_weight="" text_color="" text_spacing="" text_effect="" text_italic="" text_smallcaps="" text_uppercase="" headings_weight="" headings_color="" headings_spacing="" headings_effect="" headings_italic="" headings_smallcaps="" headings_uppercase=""></dmdesignskill>
+            <dmdesignskill skill="headings" h1_family="Rakkas" h1_weight="" h1_color="" h1_effect="" h1_smallcaps="" h1_uppercase="" h2_family="" h1_spacing="" h2_weight="" h2_color="" h2_spacing="" h2_effect="" h2_uppercase="" h2_smallcaps="" h3_weight="normal" h3_family="Fira Sans" h3_color="white" h4_family="Space Grotesk" h4_color="white" h4_weight="bold" h4_uppercase="uppercase" h5_family="Maven Pro" h5_weight="bolder" h5_color="color4" h5_spacing="8px" h5_smallcaps="small-caps" h1_italic="" h2_italic=""></dmdesignskill>
+            <dmdesignskill skill="background" image_for_colors="true" advanced="true" filter_blur="0" filter_brightness="100" filter_contrast="100" filter_grayscale="0" filter_hue-rotate="0" filter_invert="0" filter_opacity="100" filter_saturate="100" filter_sepia="0" color image="https://images.unsplash.com/photo-1511300636408-a63a89df3482?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDF8fHdhbGxwYXBlcnxlbnwwfHx8fDE3NjU2NDY2NjZ8MA&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&fit=max"></dmdesignskill>
+            <dmdesignskill skill="plainhtml" reset="true"></dmdesignskill>
+        </dmdesign>
+        <dmdesign>
+            <dmdesignskill skill="plainhtml.colors">
+                <dmcolor key="primary" color="rgb(84 100 177)"/>
+                <dmcolor key="secondary" color="rgb(36 44 76)"/>
+                <dmcolor key="color3" color="rgb(156 153 212)"/>
+                <dmcolor key="color4" color="rgb(92 102 176)"/>
+                <dmcolor key="white" color="white"/>
+                <dmcolor key="light" color="#f8f9fa"/>
+                <dmcolor key="dark" color="#000000"/>
+            </dmdesignskill>
+            <dmdesignskill skill="fonts" text_family="Georgia, serif" headings_family="Expletus Sans" text_weight="" text_color="" text_spacing="" text_effect="" text_italic="" text_smallcaps="" text_uppercase="" headings_weight="" headings_color="" headings_spacing="" headings_effect="" headings_italic="" headings_smallcaps="" headings_uppercase=""></dmdesignskill>
+            <dmdesignskill skill="headings" h1_family="Rakkas" h1_weight="" h1_color="" h1_effect="" h1_smallcaps="" h1_uppercase="" h2_family="" h1_spacing="" h2_weight="" h2_color="" h2_spacing="" h2_effect="" h2_uppercase="" h2_smallcaps="" h3_weight="normal" h3_family="Fira Sans" h3_color="white" h4_family="Space Grotesk" h4_color="white" h4_weight="bold" h4_uppercase="uppercase" h5_family="Maven Pro" h5_weight="bolder" h5_color="color4" h5_spacing="8px" h5_smallcaps="small-caps" h1_italic="" h2_italic=""></dmdesignskill>
+            <dmdesignskill skill="background" image_for_colors="true" advanced="true" filter_blur="0" filter_brightness="100" filter_contrast="100" filter_grayscale="0" filter_hue-rotate="0" filter_invert="0" filter_opacity="100" filter_saturate="100" filter_sepia="0" color image="https://images.unsplash.com/photo-1511300636408-a63a89df3482?ixid=M3wyMDkyMnwwfDF8c2VhcmNofDF8fHdhbGxwYXBlcnxlbnwwfHx8fDE3NjU2NDY2NjZ8MA&ixlib=rb-4.1.0q=85&fm=jpg&crop=faces&cs=srgb&w=1200&fit=max"></dmdesignskill>
+            <dmdesignskill skill="plainhtml" reset="true"></dmdesignskill>
+        </dmdesign>
+    </dmdesigns>
+    <dmlocked plainhtml-colors-primary="false" plainhtml-colors-secondary="false" plainhtml-colors-color3="false" plainhtml-colors-color4="false" plainhtml-colors-white="true" plainhtml-colors-light="true" plainhtml-colors-dark="true"></dmlocked>
+</project>

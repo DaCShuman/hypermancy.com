@@ -1,0 +1,45 @@
+
+<section>
+  <h2>📖 Open License, Decency Clause</h2>
+  <p>MDS is free to use under an open license, encouraging indie creators and storytellers to build their own worlds and modules. A decency clause is included to ensure content built with MDS upholds respectful, non-exploitative standards.</p>
+</section>
+______________________________________________________________________________________
+ :root {
+    --accent-green: #00ff64; /* add your variable so .text-accent works */
+  }
+
+Place this after p {}
+  /* text utilities (TOP-LEVEL, not inside p {}) */
+  .text-accent   { color: var(--accent-green); }
+  .text-purple   { color: #b58cff; }        /* tune to taste */
+  .text-green    { color: #24b63aff}
+  .text-red      { color: #a10202ff}
+  .text-muted    { color: rgba(255,255,255,.7); }
+  .text-warning  { color: #ffb84d; }        /* amber */
+  .text-danger   { color: #ff6b6b; }
+  .text-glow     { text-shadow: 0 0 6px currentColor; } /* optional glow */
+  ___________________________________________________________________________________
+
+
+
+        <!-- Optional: quick table scaffold; fill in your actual trait names/values -->
+      <div class="table-wrap">
+        <table class="table table--compact table--zebra">
+          <thead>
+            <tr><th>Trait</th><th>Value</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Brawn</td><td>—</td><td></td></tr>
+            <tr><td>Nimbleness</td><td>—</td><td></td></tr>
+            <tr><td>Toughness</td><td>—</td><td></td></tr>
+            <tr><td>Ki</td><td>—</td><td></td></tr>
+            <tr><td>Smarts</td><td>—</td><td></td></tr>
+            <tr><td>Vibes</td><td>—</td><td></td></tr>
+            <tr><td>Charm</td><td>—</td><td></td></tr>
+            <tr><td>Aura</td><td>—</td><td></td></tr>
+            <tr><td>Other Advantages & Disadvantages</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+______________________________________________________________________________________
+
