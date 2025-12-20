@@ -1,199 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Magnitude Dice System</title>
-
-  <!-- Shared site CSS/JS -->
-  <link rel="stylesheet" href="/css/mds.css">
-  <script src="/js/mds.js" defer></script>
-
-  <style>
-    :root { 
-      /* keep page accent (same as default, but explicit here) */
-      --accent-green: #00ff99;
-      --text-primary: #ffffff;
-      --accent-purple: #b58cff;
-    }
-
-    main { width: 100%; max-width: 100%; }
-    header { margin-bottom: 2em; }
-    h1 { font-size: 2.5rem; margin-bottom: 0.5em; }
-    p  { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; }
-    @media (max-width: 768px) { h1 { font-size: 1.8rem; } p { font-size: 1rem; } }
-
-    /* Section (MDS-internal) button bar styling (uses mds.css base, keeps separate hook) */
-    nav.button-bar.section-nav {
-      display: flex; flex-wrap: wrap; justify-content: center;
-      gap: 1em; margin-bottom: 2em;
-    }
-
-    /* Power Factors list */
-    .power-factors { list-style: none; padding: 0; text-align: left; max-width: 700px; margin: 0 auto; }
-    .power-factors li { margin-bottom: .5em; font-size: 1.1rem; }
-    .power-factors strong { color: rgb(233, 146, 7); }
-
-    /* Hover-only purple + glow opt-in (site-wide nav visuals) */
-    .hover-purple-glow { color: inherit; text-shadow: none; transition: color .2s ease, text-shadow .2s ease; }
-    a.hover-purple-glow:hover, a.hover-purple-glow:focus-visible { color: var(--accent-purple); text-shadow: 0 0 6px var(--accent-purple); }
-
-    /* Site-wide Button bar (index-style; mds.css provides base .button-bar/.nav-btn) */
-    nav.button-bar.site-nav { display:flex; flex-wrap:wrap; justify-content:center; gap:1em; margin-bottom:.75em; }
-
-    /* Expanding description panel under navs */
-    .bar-explain {
-      position: relative;
-      margin: 0 auto 1.5rem;
-      max-width: 900px;
-      color: var(--text-primary);
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 12px;
-      padding: 0 1.1rem;
-      overflow: clip;
-      backdrop-filter: blur(10px);
-
-      /* collapsed state */
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(-6px) scaleY(.98);
-      transform-origin: top;
-      transition: max-height .35s ease, opacity .25s ease, transform .35s ease, padding .25s ease;
-    }
-    .bar-explain.show {
-      max-height: 220px;
-      opacity: 1;
-      transform: translateY(0) scaleY(1);
-      padding: .85rem 1.1rem 1rem;
-    }
-    .bar-explain p { margin: 0; font-size: 1rem; line-height: 1.55; text-align: center; }
-
-    .scribble-frame {
-      position: absolute; inset: -8px;
-      width: calc(100% + 16px); height: calc(100% + 16px);
-      pointer-events: none; opacity: .55;
-    }
-    .scribble-frame path {
-      fill:none; stroke: rgba(181,140,255,.55); stroke-width:2;
-      stroke-linecap:round; stroke-linejoin:round;
-      filter: drop-shadow(0 0 6px rgba(181,140,255,.25));
-    }
-  </style>
-</head>
-
-<body>
-  <main>
-    <!-- Site-wide NAV (matches Index) -->
-    <header>
-      <nav class="button-bar site-nav" id="buttonBar" data-explain-target="barExplain">
-        <a href="index.html" class="hover-purple-glow nav-item"
-           data-desc="Return to the Hypermancy Studios homepage.">
-          Hypermancy Studios
-        </a>
-        <a href="PoP.html" class="hover-purple-glow nav-item"
-           data-desc="Explore Paths of Power — the living universe and its grand campaign.">
-          Paths of Power
-        </a>
-        <a href="Contact.html" class="hover-purple-glow nav-item"
-           data-desc="Questions, collaboration, or support? Reach out to us.">
-          Contact
-        </a>
-        <a href="Mission.html" class="hover-purple-glow nav-item"
-           data-desc="Our mission, our values, and where we're headed next.">
-          Our Mission
-        </a>
-      </nav>
-
-      <!-- Expanding description panel -->
-      <div id="barExplain" class="bar-explain" aria-live="polite" aria-hidden="true">
-        <p class="explain-text"></p>
-        <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z" />
-        </svg>
-      </div>
-    </header>
-
-    <!-- Page Title -->
-    <header style="margin-top: .5rem;">
-      <h1>S3 System</h1>
-
-  <img src="/Images/MDS_Logo_Enh.svg" alt="MDS_Logo" class="logo" />  
-
-      <!-- MDS section-level nav -->
-      <nav class="button-bar section-nav" data-explain-target="barExplainSection">
-        <a href="traits.html" data-desc="Core attributes that form your dice pools.">Traits</a>
-        <a href="talents.html" data-desc="Specializations that make actions easier or open new angles.">Talents</a>
-        <a href="abilities.html" data-desc="Active powers and techniques that drive action.">Abilities</a>
-        <a href="power-factors.html" data-desc="The resource pools that fuel your abilities.">Power Factors</a>
-        <a href="action-sequences.html" data-desc="Turn flow and how big moments unfold.">Action Sequences</a>
-        <a href="TheMods.html" data-desc="Environmental/gear/alterations and other roll modifiers.">The Mods</a>
-        <a href="CharacterCreation.html" data-desc="Step-by-step guide to building your character.">Character Creation</a>
-      </nav>
-
-      <div id="barExplainSection" class="bar-explain" aria-live="polite" aria-hidden="true">
-        <p class="explain-text"></p>
-        <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z" />
-        </svg>
-      </div>
-    </header>
-
-    <!-- Dyslexic toggle -->
-    <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
-      Dyslexic font
-    </button>
-
-    <section>
-      <h2>The S3 Storytelling System</h2>
-      <p>
-        <span class="text-purple">The MDS stresses the use of a basic S3 system to assist in writing stories. All the Paths of Power modules will utilize the S3 system and the MDS core book will include a guide for new Storytellers.</span><br>
-        <strong>What does S3 stand for?</strong><br>
-        Story, Scene, Situation. Importantly, this sets a standard for <strong>Adventure Point</strong> payout. Adventure Points are to be utilized to advance character traits. A story is rated by the complexity of its scenes and upon completion delivers a mass payout of Adventure Points and likewise, each Scene is rated for a <strong>Adventure Point</strong> pay out based on the <strong>challenges</strong> and <strong>contests</strong> planned within. A big factor in the S3 system is to give the players agency to determine how they want to navigate a Scene.<br>
-        Whether the player group opts to infiltrate and avoid combat through stealth, rely on guile and wit to talk their way through, or... just... kill everything, the group will get a payout based on completion with bonuses for discoveries<br>
-        The MDS does its best to give players the capability to play the way they wish to and avoids a complication tied to the loss of Adventure Points, should the enemies be circumvented, rather than destroyed whole sale.
-      </p>
-    </section>
-
-    <section>
-      <p>
-        <span class="text-orange">This all may seem a tad bit elementary to seasoned writers, but our goal is to spread knowledge and teach new storytellers how to bridge the gap between their imagination to the tabletop, without abusing anyone with an insane learning curve. Should anyone want to create their own standalone story, we at Hypermancy will provide the foundation to do your own thing. Meanwhile, Paths of Power will feature modules ready to play, built from the S3 system with the intention of teaching the Magnitude Dice System.</span>
-      </p>
-    </section>
-
-    <section>
-      <h2>✨ Traits, Talents & Abilities Define Action</h2>
-      <p>
-        <strong>Traits</strong> set the dice pools that characters utilize to impact every scene, while <strong>Talents</strong> shape the ease with which you engage Situations. <strong>Abilities</strong> bring the action. Imagination is the limit when you want to engage in combat, commit impossible feats, achieve invulnerability, psychic manipulation and so much more. Through the expenditures of power pools generated from <strong>Power Factors</strong>
-      </p>
-    </section>
-
-    <section>
-      <h2>Power Factors</h2>
-      <p>Your characters in Paths of Power will utilize Power Factors to fuel abilities and action:</p>
-      <ul class="power-factors">
-        <li><strong>Focus</strong> – Fuels extraordinary mundane feats.</li>
-        <li><strong>Resonance</strong> – Determines spiritual connection with the environment.</li>
-        <li><strong>Phase</strong> – Indicates soul alignment with the body, generating powerful Ki.</li>
-        <li><strong>Psyche</strong> – Reflects resistance to psychic manipulation and ability to influence others.</li>
-        <li><strong>Charge</strong> – Enhances cyborgs beyond all limitations.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>🛠 Ongoing Development</h2>
-      <p>This system is evolving. As alpha testing begins, Hypermancy Studios will release supporting materials, eventually including free digital apps, adventures modules, and content toolkits. Be part of this next-level TTRPG movement from the beginning.<br>
-        Special closed tests will give our playtesters the chance to play through metaplot situations that will be featured upon the First Edition release.<br>
-        Stay tuned for more information.</p>
-    </section>
-
-    <a href="index.html" class="back-link">&larr; Return to Home</a>
-  </main>
-
-  <footer>&copy; 2025 Hypermancy Studios Limited</footer>
-
-  <!-- NAV PACK: behavior (multi-nav) -->
-  <script>
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+        <title>Magnitude Dice System</title>
+        <link rel="icon" type="image/svg+xml" href="Images/HypeH_TransBak.svg"> 
+        <!-- Shared site CSS/JS -->         
+        <link href="css/theme.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/css/mds.css"> 
+        <script src="/js/mds.js" defer></script>         
+        <style>:root { /* keep page accent (same as default, but explicit here) */ --accent-green: #00ff99; --text-primary: #ffffff; --accent-purple: #b58cff; } main { width: 100%; max-width: 100%; } header { margin-bottom: 2em; } h1 { font-size: 2.5rem; margin-bottom: 0.5em; } p { font-size: 1.1rem; line-height: 1.6; opacity: 0.9; } @media (max-width: 768px) { h1 {  font-size: 1.8rem; }  p {  font-size: 1rem; } } /* Section (MDS-internal) button bar styling (uses mds.css base, keeps separate hook) */nav.button-bar.section-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 1em; margin-bottom: 2em; } /* Power Factors list */.power-factors { list-style: none; padding: 0; text-align: left; max-width: 700px; margin: 0 auto; } .power-factors li { margin-bottom: .5em; font-size: 1.1rem; } .power-factors strong { color: rgb(233, 146, 7); } /* Hover-only purple + glow opt-in (site-wide nav visuals) */.hover-purple-glow { color: inherit; text-shadow: none; transition: color .2s ease, text-shadow .2s ease; } a.hover-purple-glow:hover, a.hover-purple-glow:focus-visible { color: var(--accent-purple); text-shadow: 0 0 6px var(--accent-purple); } /* Site-wide Button bar (index-style; mds.css provides base .button-bar/.nav-btn) */nav.button-bar.site-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 1em; margin-bottom: .75em; } /* Expanding description panel under navs */.bar-explain { position: relative; margin: 0 auto 1.5rem; max-width: 900px; color: var(--text-primary); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 0 1.1rem; overflow: clip; backdrop-filter: blur(10px);  /* collapsed state */ max-height: 0; opacity: 0; transform: translateY(-6px) scaleY(.98); transform-origin: top; transition: max-height .35s ease, opacity .25s ease, transform .35s ease, padding .25s ease; } .bar-explain.show { max-height: 220px; opacity: 1; transform: translateY(0) scaleY(1); padding: .85rem 1.1rem 1rem; } .bar-explain p { margin: 0; font-size: 1rem; line-height: 1.55; text-align: center; } .scribble-frame { position: absolute; inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); pointer-events: none; opacity: .55; } .scribble-frame path { fill: none; stroke: rgba(181,140,255,.55); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 6px rgba(181,140,255,.25)); }</style>         
+    </head>     
+    <body> 
+        <main> 
+            <!-- Site-wide NAV (matches Index) -->             
+            <header> 
+                <nav class="button-bar site-nav" id="buttonBar" data-explain-target="barExplain"> <a href="index.html" class="hover-purple-glow nav-item" data-desc="Return to the Hypermancy Studios homepage."> 
+          Hypermancy Studios </a> <a href="PoP.html" class="hover-purple-glow nav-item" data-desc="Explore Paths of Power — the living universe and its grand campaign."> 
+          Paths of Power </a> <a href="Contact.html" class="hover-purple-glow nav-item" data-desc="Questions, collaboration, or support? Reach out to us."> 
+          Contact </a> <a href="Mission.html" class="hover-purple-glow nav-item" data-desc="Our mission, our values, and where we're headed next."> 
+          Our Mission </a> 
+                </nav>                 
+                <!-- Expanding description panel -->                 
+                <div id="barExplain" class="bar-explain" aria-live="polite" aria-hidden="true"> 
+                    <p class="explain-text"></p> 
+                    <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"> 
+                        <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z"/> 
+                    </svg>                     
+                </div>                 
+            </header>             
+            <!-- Page Title -->             
+            <header style="margin-top: .5rem;"> 
+                <h1>S3 System</h1> 
+                <img src="/Images/MDS_Logo_Enh.svg" alt="MDS_Logo" class="logo"/> 
+                <!-- MDS section-level nav -->                 
+                <nav class="button-bar section-nav" data-explain-target="barExplainSection"> <a href="traits.html" data-desc="Core attributes that form your dice pools.">Traits</a> <a href="talents.html" data-desc="Specializations that make actions easier or open new angles.">Talents</a> <a href="abilities.html" data-desc="Active powers and techniques that drive action.">Abilities</a> <a href="power-factors.html" data-desc="The resource pools that fuel your abilities.">Power Factors</a> <a href="action-sequences.html" data-desc="Turn flow and how big moments unfold.">Action Sequences</a> <a href="TheMods.html" data-desc="Environmental/gear/alterations and other roll modifiers.">The Mods</a> <a href="CharacterCreation.html" data-desc="Step-by-step guide to building your character.">Character Creation</a> 
+                </nav>                 
+                <div id="barExplainSection" class="bar-explain" aria-live="polite" aria-hidden="true"> 
+                    <p class="explain-text"></p> 
+                    <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"> 
+                        <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z"/> 
+                    </svg>                     
+                </div>                 
+            </header>             
+            <!-- Dyslexic toggle -->             
+            <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn"> 
+                Dyslexic font
+</button>             
+            <section> 
+                <h2>The S3 Storytelling System</h2> 
+                <p> <span class="text-purple">The MDS stresses the use of a basic S3 system to assist in writing stories. All the Paths of Power modules will utilize the S3 system and the MDS core book will include a guide for new Storytellers.</span><br> <strong>What does S3 stand for?</strong><br> 
+        Story, Scene, Situation. Importantly, this sets a standard for <strong>Adventure Point</strong> payout. Adventure Points are to be utilized to advance character traits. A story is rated by the complexity of its scenes and upon completion delivers a mass payout of Adventure Points and likewise, each Scene is rated for a <strong>Adventure Point</strong> pay out based on the <strong>challenges</strong> and <strong>contests</strong> planned within. A big factor in the S3 system is to give the players agency to determine how they want to navigate a Scene.<br> 
+        Whether the player group opts to infiltrate and avoid combat through stealth, rely on guile and wit to talk their way through, or... just... kill everything, the group will get a payout based on completion with bonuses for discoveries<br> 
+        The MDS does its best to give players the capability to play the way they wish to and avoids a complication tied to the loss of Adventure Points, should the enemies be circumvented, rather than destroyed whole sale. </p> 
+            </section>             
+            <section> 
+                <p> <span class="text-orange">This all may seem a tad bit elementary to seasoned writers, but our goal is to spread knowledge and teach new storytellers how to bridge the gap between their imagination to the tabletop, without abusing anyone with an insane learning curve. Should anyone want to create their own standalone story, we at Hypermancy will provide the foundation to do your own thing. Meanwhile, Paths of Power will feature modules ready to play, built from the S3 system with the intention of teaching the Magnitude Dice System.</span> </p> 
+            </section>             
+            <section> 
+                <h2>✨ Traits, Talents & Abilities Define Action</h2> 
+                <p> <strong>Traits</strong> set the dice pools that characters utilize to impact every scene, while <strong>Talents</strong> shape the ease with which you engage Situations. <strong>Abilities</strong> bring the action. Imagination is the limit when you want to engage in combat, commit impossible feats, achieve invulnerability, psychic manipulation and so much more. Through the expenditures of power pools generated from <strong>Power Factors</strong> </p> 
+            </section>             
+            <section> 
+                <h2>Power Factors</h2> 
+                <p>Your characters in Paths of Power will utilize Power Factors to fuel abilities and action:</p> 
+                <ul class="power-factors"> 
+                    <li><strong>Focus</strong> – Fuels extraordinary mundane feats.
+                    </li>                     
+                    <li><strong>Resonance</strong> – Determines spiritual connection with the environment.
+                    </li>                     
+                    <li><strong>Phase</strong> – Indicates soul alignment with the body, generating powerful Ki.
+                    </li>                     
+                    <li><strong>Psyche</strong> – Reflects resistance to psychic manipulation and ability to influence others.
+                    </li>                     
+                    <li><strong>Charge</strong> – Enhances cyborgs beyond all limitations.
+                    </li>                     
+                </ul>                 
+            </section>             
+            <section> 
+                <h2>🛠 Ongoing Development</h2> 
+                <p>This system is evolving. As alpha testing begins, Hypermancy Studios will release supporting materials, eventually including free digital apps, adventures modules, and content toolkits. Be part of this next-level TTRPG movement from the beginning.<br> 
+        Special closed tests will give our playtesters the chance to play through metaplot situations that will be featured upon the First Edition release.<br> 
+        Stay tuned for more information.</p> 
+            </section>             <a href="index.html" class="back-link">&larr; Return to Home</a> 
+        </main>         
+        <footer>&copy; 2025 Hypermancy Studios Limited</footer>         
+        <!-- NAV PACK: behavior (multi-nav) -->         
+        <script>
   (() => {
     const navs = Array.from(document.querySelectorAll('nav.button-bar[data-explain-target]'));
     if (!navs.length) return;
@@ -243,6 +136,6 @@
       if (panel) bind(nav, panel);
     });
   })();
-  </script>
-</body>
+  </script>         
+    </body>     
 </html>

@@ -1,150 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Explore traversal and transportation methods in Paths of Power: skyships, portals, ley-line sailing, and spiritual transit across the Realms." />
-  <meta name="theme-color" content="#6b46c1" />
-  <title>Traversal & Transportation — Paths of Power</title>
-
-  <!-- Preload critical resources -->
-  <link rel="preload" href="/css/pop.css" as="style" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  
-  <!-- PoP bundle -->
-  <link rel="stylesheet" href="/css/pop.css" />
-  <script src="/js/pop.js" defer></script>
-</head>
-<body>
-  <!-- Skip link for keyboard navigation -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-
-  <main id="main-content" role="main">
-    <!-- Global PoP nav -->
-    <header role="banner">
-      <nav class="button-bar" id="buttonBar" data-explain-target="barExplain" aria-label="Primary navigation">
-        <a href="index.html" class="hover-purple-glow nav-item"
-           data-desc="Return to the Hypermancy Studios homepage.">
-          Hypermancy Studios
-        </a>
-
-        <a href="MDS.html" class="hover-purple-glow nav-item"
-           data-desc="Explore the Magnitude Dice System, the core mechanic behind Paths of Power.">
-          The Magnitude Dice System
-        </a>
-
-        <a href="PoP.html" class="hover-purple-glow nav-item"
-           data-desc="Explore the Paths of Power tabletop RPG system.">
-          The Paths of Power
-        </a>
-      </nav>
-
-      <img src="Images/PathsOfPower1.svg" 
-           alt="Paths of Power Logo" 
-           class="logo" 
-           width="800" 
-           height="400" 
-           loading="eager"
-           decoding="async" />
-        
-      <nav class="button-bar" id="buttonBar" data-explain-target="barExplain" aria-label="Secondary navigation">
-        <a href="Realms.html" class="hover-purple-glow nav-item"
-           data-desc="Explore the rich cosmology and lore of the Realms, the multi-dimensional universe of PoP.">
-          The Realms
-        </a>
-
-        <a href="Species.html" class="hover-purple-glow nav-item"
-           data-desc="Explore the sapient creatures, entities, monsters and lineages across the Realms.">
-          Species of the Realms
-        </a>
-
-        <a href="Travel.html" class="hover-purple-glow nav-item" aria-current="page"
-           data-desc="How people, ships, and spirits move: roads, skyships, portals, ley lines, and more.">
-          Traversal &amp; Transportation
-        </a>
-      </nav>
-
-      <!-- Dyslexic toggle -->
-      <button id="dyslexicToggle" 
-              type="button" 
-              aria-pressed="false" 
-              aria-label="Toggle dyslexic-friendly font"
-              class="nav-btn">
-        Dyslexic font
-      </button>
-
-      <!-- Hover/focus description panel -->
-      <div id="barExplain" class="bar-explain" role="status" aria-live="polite" aria-hidden="true">
-        <p class="explain-text"></p>
-        <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z" />
-        </svg>
-      </div>
-    </header>
-
-    <header>
-      <h1 id="page-title">Traversal &amp; Transportation</h1>
-      <p class="text-muted">How travelers cross cities, worlds, and realms in the Paths of Power universe.</p>
-    </header>
-
-    <!-- Overview -->
-    <section aria-labelledby="overview-heading">
-      <h2 id="overview-heading">Overview</h2>
-      <p>
+<!DOCTYPE html> 
+<html lang="en"> 
+    <head> 
+        <meta charset="UTF-8"/> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+        <meta name="description" content="Explore traversal and transportation methods in Paths of Power: skyships, portals, ley-line sailing, and spiritual transit across the Realms."/> 
+        <meta name="theme-color" content="#6b46c1"/> 
+        <title>PoP</title>
+        <link rel="icon" type="image/svg+xml" href="Images/HypeH_TransBak.svg">
+        <!-- Preload critical resources -->         
+        <link rel="preload" href="/css/pop.css" as="style"/> 
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/> 
+        <!-- PoP bundle -->         
+        <link href="css/theme.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/css/pop.css"/> 
+        <script src="/js/pop.js" defer></script>         
+    </head>     
+    <body> 
+        <!-- Skip link for keyboard navigation -->         <a href="#main-content" class="skip-link">Skip to main content</a> 
+        <main id="main-content" role="main"> 
+            <!-- Global PoP nav -->             
+            <header role="banner"> 
+                <nav class="button-bar" id="buttonBar" data-explain-target="barExplain" aria-label="Primary navigation"> <a href="index.html" class="hover-purple-glow nav-item" data-desc="Return to the Hypermancy Studios homepage."> 
+          Hypermancy Studios </a> <a href="MDS.html" class="hover-purple-glow nav-item" data-desc="Explore the Magnitude Dice System, the core mechanic behind Paths of Power."> 
+          The Magnitude Dice System </a> <a href="PoP.html" class="hover-purple-glow nav-item" data-desc="Explore the Paths of Power tabletop RPG system."> 
+          The Paths of Power </a> 
+                </nav>                 
+                <img src="Images/PathsOfPower1.svg" alt="Paths of Power Logo" class="logo" width="800" height="400" loading="eager" decoding="async"/> 
+                <nav class="button-bar" id="buttonBar" data-explain-target="barExplain" aria-label="Secondary navigation"> <a href="Realms.html" class="hover-purple-glow nav-item" data-desc="Explore the rich cosmology and lore of the Realms, the multi-dimensional universe of PoP."> 
+          The Realms </a> <a href="Species.html" class="hover-purple-glow nav-item" data-desc="Explore the sapient creatures, entities, monsters and lineages across the Realms."> 
+          Species of the Realms </a> <a href="Travel.html" class="hover-purple-glow nav-item" aria-current="page" data-desc="How people, ships, and spirits move: roads, skyships, portals, ley lines, and more."> 
+          Traversal &amp; Transportation </a> 
+                </nav>                 
+                <!-- Dyslexic toggle -->                 
+                <button id="dyslexicToggle" type="button" aria-pressed="false" aria-label="Toggle dyslexic-friendly font" class="nav-btn"> 
+                    Dyslexic font
+</button>                 
+                <!-- Hover/focus description panel -->                 
+                <div id="barExplain" class="bar-explain" role="status" aria-live="polite" aria-hidden="true"> 
+                    <p class="explain-text"></p> 
+                    <svg class="scribble-frame" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"> 
+                        <path d="M3,7 Q8,5 13,6 L87,4 Q93,5 96,8 L97,32 Q94,35 88,36 L12,35 Q6,34 3,30 Z"/> 
+                    </svg>                     
+                </div>                 
+            </header>             
+            <header> 
+                <h1 id="page-title">Traversal &amp; Transportation</h1> 
+                <p class="text-muted">How travelers cross cities, worlds, and realms in the Paths of Power universe.</p> 
+            </header>             
+            <!-- Overview -->             
+            <section aria-labelledby="overview-heading"> 
+                <h2 id="overview-heading">Overview</h2> 
+                <p> 
         Movement in PoP ranges from the mundane to the mythical. Whether you're booking passage on a skyship,
         stepping through a portal, or surfing a ley-line current between Living Worlds, each method has its own
-        costs, risks, and requirements.
-      </p>
-    </section>
-
-    <!-- Mundane & Tech -->
-    <section aria-labelledby="mundane-heading">
-      <h2 id="mundane-heading">Mundane &amp; Technological Travel</h2>
-      <p>
+        costs, risks, and requirements. </p> 
+            </section>             
+            <!-- Mundane & Tech -->             
+            <section aria-labelledby="mundane-heading"> 
+                <h2 id="mundane-heading">Mundane &amp; Technological Travel</h2> 
+                <p> 
         Roads, rails, suborbital hops, and starliners. Reliable—if slower—and widely available in stable regions.
-        Great for commerce, caravans, and moving inconspicuously.
-      </p>
-    </section>
-
-    <!-- Sky/Realm Ships -->
-    <section aria-labelledby="skyships-heading">
-      <h2 id="skyships-heading">Skyships &amp; Realmships</h2>
-      <p>
+        Great for commerce, caravans, and moving inconspicuously. </p> 
+            </section>             
+            <!-- Sky/Realm Ships -->             
+            <section aria-labelledby="skyships-heading"> 
+                <h2 id="skyships-heading">Skyships &amp; Realmships</h2> 
+                <p> 
         Airborne craft that ride upon steady Gusts around the everlasting skies of Oorun Agbara. These aircraft are
-        reinforced to withstand storms that whip debris from wrecked vessels and worlds, haphazardly through the deep skies regions.
-      </p>
-    </section>
-
-    <!-- Portals & Gates -->
-    <section aria-labelledby="portals-heading">
-      <h2 id="portals-heading">Portals, Gates &amp; Waylines</h2>
-      <p>
+        reinforced to withstand storms that whip debris from wrecked vessels and worlds, haphazardly through the deep skies regions. </p> 
+            </section>             
+            <!-- Portals & Gates -->             
+            <section aria-labelledby="portals-heading"> 
+                <h2 id="portals-heading">Portals, Gates &amp; Waylines</h2> 
+                <p> 
         Ancient gates, keyed waylines, and temporary rifts allow near-instant traversal.
-        Expect tolls to traverse and enter from well used routes. Alternatively, Way-Keys and rituals can attain cross Realm travel, but this is a risky venture. Once open gates will always deliver travelers towards a destination, but misaligned exits can be… unpleasant.
-      </p>
-    </section>
-
-    <!-- Ley Lines -->
-    <section aria-labelledby="ley-lines-heading">
-      <h2 id="ley-lines-heading">Ley-Line Sailing</h2>
-      <p>
-        Mana and Shikai channels form "currents" that seasoned navigators can ride. This fuels travel within the Primal Realm, allowing vessels with Slip Drives to phase out of the physical realm through wormholes, to ride the natural flow of energies between planets to arrive in other solar systems. 
-      </p>
-    </section>
-
-    <!-- Spiritual/Astral -->
-    <section aria-labelledby="spiritual-heading">
-      <h2 id="spiritual-heading">Spiritual Transit</h2>
-      <p>
-        Astral projection, spirit walking, and guided crossings. Powerful for reconnaissance or diplomacy.
-      </p>
-    </section>
-
-    <nav aria-label="Return navigation">
-      <a href="PoP.html" class="back-link">&larr; Return to PoP</a>
-    </nav>
-  </main>
-
-  <footer role="contentinfo">&copy; 2025 Hypermancy Studios Limited</footer>
-</body>
+        Expect tolls to traverse and enter from well used routes. Alternatively, Way-Keys and rituals can attain cross Realm travel, but this is a risky venture. Once open gates will always deliver travelers towards a destination, but misaligned exits can be… unpleasant. </p> 
+            </section>             
+            <!-- Ley Lines -->             
+            <section aria-labelledby="ley-lines-heading"> 
+                <h2 id="ley-lines-heading">Ley-Line Sailing</h2> 
+                <p> 
+        Mana and Shikai channels form "currents" that seasoned navigators can ride. This fuels travel within the Primal Realm, allowing vessels with Slip Drives to phase out of the physical realm through wormholes, to ride the natural flow of energies between planets to arrive in other solar systems.  </p> 
+            </section>             
+            <!-- Spiritual/Astral -->             
+            <section aria-labelledby="spiritual-heading"> 
+                <h2 id="spiritual-heading">Spiritual Transit</h2> 
+                <p> 
+        Astral projection, spirit walking, and guided crossings. Powerful for reconnaissance or diplomacy. </p> 
+            </section>             
+            <nav aria-label="Return navigation"> <a href="PoP.html" class="back-link">&larr; Return to PoP</a> 
+            </nav>             
+        </main>         
+        <footer role="contentinfo">&copy; 2025 Hypermancy Studios Limited</footer>         
+    </body>     
 </html>

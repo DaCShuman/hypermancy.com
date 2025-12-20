@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talents</title>
+
+  <!-- Shared site CSS/JS -->
+  <link rel="stylesheet" href="/css/mds.css">
+  <script src="/js/mds.js" defer></script>
+
+  <style>
+    /* Page-specific: description list layout for Talents */
+    .talent-dl{
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      column-gap: .5rem;
+      row-gap: .4rem;
+      text-align: left;
+      margin: 0 auto 2rem;
+      max-width: 120ch;
+    }
+    .talent-dl dt{ font-weight:700; margin:0; }
+    .talent-dl dt::after{ content: ":"; }
+    .talent-dl dd{ margin:0; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Magnitude Dice System</h1>
+      <nav class="button-bar">
+        <a href="traits.html">Traits</a>
+        <a href="talents.html">Talents</a>
+        <a href="abilities.html">Abilities</a>
+        <a href="power-factors.html">Power Factors</a>
+        <a href="action-sequences.html">Action Sequences</a>
+        <a href="TheMods.html">The Mods</a>
+        <a href="CharacterCreation.html" data-desc="Step-by-step guide to building your character.">Character Creation</a>
+
+      </nav>
+    </header>
+
+    <!-- Dyslexic toggle (styled + handled by mds.css/mds.js) -->
+    <button id="dyslexicToggle" type="button" aria-pressed="false" class="nav-btn">
+      Dyslexic font
+    </button>
+
+    <header>
+      <h1>What are the <strong>Talents</strong> in the Magnitude Dice System?</h1>
+    </header>
+
+    <section>
+      <p>
+        Talents define a being. Do you, or do you not have the talent? If you don't, do you have the time to develop the talent?<br />
+        Not many of us do, so we seek help. Talent in the MDS is designed to encourage teamwork.
+      </p>
+    </section>
+
+    <section>
+      <p>
+        <strong>Well? Do you got it?</strong><br />
+        Talent in the MDS ranges from negative to positive in level. Sometimes we are just too bad at something for us to engage in that activity safely.<br />
+        Does it reflect on our character? Only if we let it define us. Shape us. Defeat us.<br />
+        When we lack talent, we make things harder for ourselves. We don't mean to, but if we work really hard we can develop through skill building to overcome our limitations.<br />
+        It is how character is developed and it is how we move forwards in life.
+      </p>
+    </section>
+
+    <section>
+      <p>
+        <strong>The Mods</strong><br />
+        Talent changes the Mod Factor that the character has to deal with during a situation. The Mods are a set of modifications that make things easier or harder for the character to perform.<br />
+        A negative talent will make the situation worse. A positive talent will make the situation better.<br />
+        The big idea is that when we have built talent in a field, actions become easier, because we naturally simplify the process through experience and knowledge.
+      </p>
+    </section>
+
+    <section>
+      <h1>Skill Point development.</h1>
+      <p class="text-green">
+        Talent can be developed through practice and experience. The more we do something, the better we get at it. This is determined in game by the distribution of Skill Points when talents are employed. Skill points are delivered to the talent and used to purchase abilities from that talent’s ability trees.
+      </p>
+      <p class="text-red">
+        There are requirements to purchase abilities and having a negative talent will prevent your character from accessing any abilities governed by that talent.
+      </p>
+      <p class="text-orange">
+        In this way, characters are paid in respect to their actions during the Scenes of a Story. The more they apply efforts the more they are rewarded. The effect is maximized at a few points per Scene to avoid power leveling, such as purchasing enough locks to fill a room and theoretically maxing out the Crime skill by picking every lock over and over while choosing to play through downtime.
+      </p>
+    </section>
+
+    <section>
+      <h1>Talent List</h1>
+      <p>
+        There are 8 talents per trait. The talents may change as play testing commences, but the idea is to cover a wide range of actions per talent.<br />
+        Talents are meant to be broad in application, so that a player may be creative in their approach to a Situation.<br />
+        Players are not restricted from attempting any actions, even if they have a negative talent, so they may choose to simulate a concept they have simply dreamt of, or they may very well know that a specific power exists and just have never received training in that ability, yet.<br />
+        Try it out—you may be surprised by the results. The challenge will be created by the Mods. Committing to an action will incur negative modification against your roll. If you also don't have the talent, the negative rate will also apply against the Mods.<br />
+        But it is all about the story and the experience. The MDS is designed to facilitate that experience and enable imagination to run wild.
+      </p>
+    </section>
+
+    <!-- BRAWN -->
+    <section>
+      <h2><strong>Brawn Talents</strong></h2>
+      <dl class="talent-dl">
+        <dt>Athletics</dt><dd>Running, jumping, swimming and throwing. General physical feats and many sports skills fall under this talent.</dd>
+        <dt>Brawling</dt><dd>Fighting unarmed, including grappling, wrestling and throwing. You know how to throw a punch—and take one.</dd>
+        <dt>Might</dt><dd>Extraordinary feats of brute strength, like lifting massive weights or smashing obstacles.</dd>
+        <dt>Prowess</dt><dd>Projecting a physically intimidating presence or hunting others with feral precision. You are a predator.</dd>
+        <dt>Juggernaut</dt><dd>Handling and controlling massive tools or weapons, from jackhammers to miniguns.</dd>
+        <dt>Craft</dt><dd>Physically intensive crafting, forging, or repairing. You can build or fix things with your hands.</dd>
+        <dt>Endurance</dt><dd>Resisting fatigue, hardship, and prolonged strain.</dd>
+        <dt>Survival</dt><dd>Withstanding the challenges of the wilderness or megaplex and using nature of the environment to survive in any locale.</dd>
+      </dl>
+    </section>
+
+    <!-- NIMBLENESS -->
+    <section>
+      <h2><strong>Nimbleness</strong></h2>
+      <dl class="talent-dl">
+        <dt>Dueling</dt><dd>All forms of armed melee combat comprise this talent.</dd>
+        <dt>Marksmanship</dt><dd>All forms of ranged combat, from bows to blasters, are covered by this talent.</dd>
+        <dt>Pilot/Ride</dt><dd>Handling all manner of vehicles or riding mounted creatures.</dd>
+        <dt>Acrobatics</dt><dd>Dynamic movement, feats of balance, aerial stunts, and controlled leaps and falls.</dd>
+        <dt>Crime</dt><dd>Picking locks, disabling security, and many other illicit activities are contained within this talent.</dd>
+        <dt>Sneak</dt><dd>Moving unseen and unheard.</dd>
+        <dt>Trickery</dt><dd>Distracting or misdirecting others, from feints to playful cons and legerdemain.</dd>
+        <dt>Reflexes</dt><dd>Purely reactive dodging and swift responses to danger.</dd>
+      </dl>
+    </section>
+
+    <!-- TOUGHNESS -->
+    <section>
+      <h2><strong>Toughness</strong></h2>
+      <dl class="talent-dl">
+        <dt>Resolution</dt><dd>Mental fortitude, unwavering focus, and concentration.</dd>
+        <dt>Rooting</dt><dd>Absorbing impacts without being moved or knocked down.</dd>
+        <dt>Recovery</dt><dd>Healing from injuries and restoring physical form.</dd>
+        <dt>Hardening</dt><dd>Conditioning the body to take repeated punishment.</dd>
+        <dt>Fasting</dt><dd>Surviving without food or water for extended periods.</dd>
+        <dt>Guts</dt><dd>Resisting poisons, toxins, and consuming questionable substances.</dd>
+        <dt>Daunt</dt><dd>Exuding an aura of danger even if one is physically unimposing.</dd>
+        <dt>Weathering</dt><dd>Enduring environmental extremes such as heat, cold, and storms.</dd>
+      </dl>
+    </section>
+
+    <!-- KI -->
+    <section>
+      <h2><strong>Ki</strong></h2>
+      <dl class="talent-dl">
+        <dt>Third Eye</dt><dd>Opening the mind’s eye to see spirits, souls, and energies.</dd>
+        <dt>Kinesics</dt><dd>Infusing Ki into balance and movement—running on wires, impossible leaps.</dd>
+        <dt>Physique</dt><dd>Mystically altering one’s own body, including shapeshifting.</dd>
+        <dt>Ken</dt><dd>Spiritual connection to animals and other beings, often linked to shape changing.</dd>
+        <dt>Fortify</dt><dd>Fusing Ki to the body to resist physical harm.</dd>
+        <dt>Mimicry</dt><dd>Projecting a psychic impression to appear or sound like another.</dd>
+        <dt>Imbue</dt><dd>Imprinting personal energies into objects, vital for enchanting and alchemy.</dd>
+        <dt>Vitality</dt><dd>Controlling body temperature, heart rate, and internal processes to maintain life force.</dd>
+      </dl>
+    </section>
+
+    <!-- SMARTS -->
+    <section>
+      <h2><strong>Smarts</strong></h2>
+      <dl class="talent-dl">
+        <dt>Technology</dt><dd>Using, repairing, or modifying modern technology.</dd>
+        <dt>Engineering</dt><dd>Building, designing, or modifying structures and machinery.</dd>
+        <dt>Academics</dt><dd>Knowledge of science, history, and other scholarly subjects.</dd>
+        <dt>Negotiation</dt><dd>Haggling, mediating disputes, and resolving high-stakes conflicts.</dd>
+        <dt>Instruction</dt><dd>Effectively teaching and sharing knowledge. Just because you know a lot doesn’t mean you can teach it.</dd>
+        <dt>Linguistics</dt><dd>Mastery of languages, dialects, and codes.</dd>
+        <dt>Logic</dt><dd>Applying pure reasoning to puzzles and problems.</dd>
+        <dt>Lore</dt><dd>Cultural knowledge, folklore and spiritual beliefs not usually found in text books.</dd>
+      </dl>
+    </section>
+
+    <!-- VIBES -->
+    <section>
+      <h2><strong>Vibes</strong></h2>
+      <dl class="talent-dl">
+        <dt>Performance</dt><dd>Artistic expression and stagecraft.</dd>
+        <dt>Observation</dt><dd>Reading subtle details about the environment and people.</dd>
+        <dt>Empathy</dt><dd>Feeling and understanding the emotions of others.</dd>
+        <dt>Threat</dt><dd>Projecting and detecting the sense of menace and danger.</dd>
+        <dt>Streetwise</dt><dd>Knowing how to navigate locales and understanding local customs, from rural regions to megacities.</dd>
+        <dt>Behavior</dt><dd>Understanding others’ social motives, etiquette and intentions.</dd>
+        <dt>Sensory</dt><dd>Heightened senses and gut-level environmental awareness.</dd>
+        <dt>Attunement</dt><dd>A deep, almost subconscious connection to the environment and its energies.</dd>
+      </dl>
+    </section>
+
+    <!-- CHARM -->
+    <section>
+      <h2><strong>Charm</strong></h2>
+      <dl class="talent-dl">
+        <dt>Influence</dt><dd>The ability to persuade, seduce, or negotiate by altering another creature’s behavior, emotions, or decisions.</dd>
+        <dt>Guile</dt><dd>The art of clever manipulation, including deception, intimidation, trickery, and social subversion.</dd>
+        <dt>Acting</dt><dd>Adopting new roles and characters believably.</dd>
+        <dt>Comedy</dt><dd>Humor as a means of connection and social lubricant.</dd>
+        <dt>Magnetism</dt><dd>A natural aura that draws others in.</dd>
+        <dt>Banter</dt><dd>Quick-witted dialogue and verbal sparring.</dd>
+        <dt>Miasma</dt><dd>A talent that projects confusion or disorientation through charm; may obscure presence or create illusions through sheer personality.</dd>
+        <dt>Authority</dt><dd>Naturally taking charge or being recognized as a leader through commanding presence and self-assurance.</dd>
+      </dl>
+    </section>
+
+    <!-- AURA -->
+    <section>
+      <h2><strong>Aura</strong></h2>
+      <dl class="talent-dl">
+        <dt>Psionics</dt><dd>Influencing the minds of living beings, divination, and psychic awareness.</dd>
+        <dt>Magic</dt><dd>Manipulating mana and Shikai energies.</dd>
+        <dt>Kinetics</dt><dd>Controlling environmental forces through mental manipulation of elemental forces.</dd>
+        <dt>Presence</dt><dd>Knowing how to manipulate spiritual force that subdues or dominates.</dd>
+        <dt>Transmutation</dt><dd>Altering, creating, or destroying matter and energy.</dd>
+        <dt>Summoning</dt><dd>Calling forth or banishing spirits and entities.</dd>
+        <dt>Binding</dt><dd>Attaching or releasing entities or energies to places or objects.</dd>
+        <dt>Domaine</dt><dd>Command of a personal or environmental territory, shielding from external influences.</dd>
+      </dl>
+    </section>
+
+    <a href="mds.html" class="back-link">&larr; Return to MDS Home</a>
+  </main>
+
+  <footer>&copy; 2025 Hypermancy Studios Limited</footer>
+</body>
+</html>
